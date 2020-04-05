@@ -21,6 +21,22 @@ class CourseApi {
     return courseList;
   }
 
+
+  Future<List<Course>> getCoursesByCategory(id) async {
+    print('getCoursesByCategory');
+    try {
+      Response response = await Dio().get("${Constants.URL}getCourses?category_id=${id}");
+      if (response.statusCode == 200) {
+        courseList = Course.fromJsonList(response.data['data']);
+      }
+    } catch (e) {
+      return null;
+    }
+    return courseList;
+  }
+
+
+
   Future<List<Course>> search(name) async {
     print('search');
     try {

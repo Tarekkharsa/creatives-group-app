@@ -21,6 +21,7 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import '../../../locator.dart';
+import '../all_courses.dart';
 import '../base_view.dart';
 
 class DesignCourseHomeScreen extends StatefulWidget {
@@ -272,7 +273,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             padding: const EdgeInsets.only(left: 5, right: 5),
             child: Row(
               children: <Widget>[
-                getCategoryBtn2(categoryListApi[index].name),
+                getCategoryBtn2(
+                    categoryListApi[index].name, categoryListApi[index].id),
               ],
             ),
           ),
@@ -335,7 +337,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     );
   }
 
-  Widget getCategoryBtn2(String text) {
+  Widget getCategoryBtn2(String text, int id) {
     return Container(
       decoration: BoxDecoration(
           color: DesignCourseAppTheme.nearlyBlue,
@@ -348,7 +350,13 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         child: InkWell(
           splashColor: Colors.white24,
           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AllCourses(category_id: id)),
+            );
+
+          },
           child: Padding(
             padding:
                 const EdgeInsets.only(top: 12, bottom: 12, left: 18, right: 18),
@@ -478,7 +486,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     }
 
     showOverlayNotification((context) {
-
       return Card(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         child: SafeArea(
@@ -487,26 +494,22 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                 size: const Size(45, 45),
                 child: ClipOval(
                     child: Container(
-                      decoration: new BoxDecoration(
-                      color: Colors.transparent,
-                        image: DecorationImage(
-                          image: new AssetImage(
-                              'assets/design_course/logo-png.png'),
-                          fit: BoxFit.fill,
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                    ))),
+                  decoration: new BoxDecoration(
+                    color: Colors.transparent,
+                    image: DecorationImage(
+                      image:
+                          new AssetImage('assets/design_course/logo-png.png'),
+                      fit: BoxFit.fill,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                ))),
             title: Text(fetchedMessage['title']),
             subtitle: Text(fetchedMessage['body']),
-
-
           ),
         ),
       );
     }, duration: Duration(milliseconds: 4000));
-
-
   }
 
   void _saveDeviceToken() {}

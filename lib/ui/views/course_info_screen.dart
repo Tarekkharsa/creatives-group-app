@@ -3,6 +3,7 @@ import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/models/course.dart';
 import 'package:creativesapp/core/utils/Constants.dart';
 import 'package:creativesapp/core/viewmodels/course_model.dart';
+import 'package:creativesapp/locator.dart';
 import 'package:creativesapp/ui/themes/HexColor.dart';
 import 'package:creativesapp/ui/themes/design_course_app_theme.dart';
 import 'package:creativesapp/ui/widgets/SocialIcon.dart';
@@ -45,8 +46,12 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
         parent: animationController,
         curve: Interval(0, 1.0, curve: Curves.fastOutSlowIn)));
     setData();
+
+
     super.initState();
   }
+
+
 
   Future<void> setData() async {
     animationController.forward();
@@ -63,6 +68,15 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
       opacity3 = 1.0;
     });
   }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+
+    super.dispose();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {

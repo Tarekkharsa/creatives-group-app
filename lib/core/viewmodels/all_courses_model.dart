@@ -15,7 +15,9 @@ import 'base_model.dart';
 class AllCoursesModel extends BaseModel {
 
   CourseApi _apiCourse = locator<CourseApi>();
+  CategoryApi _apiCategories = locator<CategoryApi>();
 
+  List<Category> categories;
   List<Course> courses;
   String _courseName;
 
@@ -26,9 +28,23 @@ class AllCoursesModel extends BaseModel {
     notifyListeners();
   }
 
-  Future getCourses(name) async {
+  Future search(name) async {
     setState(ViewState.Busy);
     courses = await _apiCourse.search(name);
     setState(ViewState.Idle);
   }
+
+  Future getCoursesByCategory(id) async {
+    print('getCoursesByCategory');
+    setState(ViewState.Busy);
+    courses = await _apiCourse.getCoursesByCategory(id);
+    setState(ViewState.Idle);
+  }
+
+  Future getCategories() async {
+    setState(ViewState.Busy);
+    categories = await _apiCategories.getCategories();
+    setState(ViewState.Idle);
+  }
+
 }

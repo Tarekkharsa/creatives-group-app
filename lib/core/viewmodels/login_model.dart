@@ -72,6 +72,8 @@ class LoginModel extends BaseModel {
   Future getConfigurations() async {
     setState(ViewState.Busy);
     configurations= await _configurationApi.getConfigurations();
+
+
     for (var x in configurations) {
       print(x.key);
             if(x.key == 'FacebookPage'){
@@ -88,4 +90,7 @@ class LoginModel extends BaseModel {
 
     setState(ViewState.Idle);
   }
+
+
+
 }

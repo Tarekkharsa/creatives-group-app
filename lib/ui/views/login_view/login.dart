@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/viewmodels/home_model.dart';
 import 'package:creativesapp/core/viewmodels/login_model.dart';
+import 'package:creativesapp/locator.dart';
 import 'package:creativesapp/ui/themes/HexColor.dart';
 import 'package:creativesapp/ui/views/base_view.dart';
 import 'package:creativesapp/ui/views/home_view/home_design_course.dart';
@@ -30,6 +31,16 @@ class _LoginState extends State<Login> {
   final  _fbKey = GlobalKey<FormBuilderState>();
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+
+
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    locator<LoginModel>().dispose();
+    super.dispose();
+  }
 
   bool _isSelected = false;
   bool _isLoading = false;

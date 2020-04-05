@@ -1,6 +1,8 @@
 
 
 
+import 'dart:async';
+
 import 'package:creativesapp/core/api/course_api.dart';
 import 'package:creativesapp/core/api/user_api.dart';
 import 'package:creativesapp/core/api/user_api.dart';
@@ -52,11 +54,10 @@ class CourseModel extends BaseModel{
 
   @override
   void dispose() {
-//    if(!CourseModel().hasListeners){
-//      CourseModel().dispose();
-//    }
-
+    CourseModel().dispose();
+    print('course model dispose');
     super.dispose();
   }
+
 
 }

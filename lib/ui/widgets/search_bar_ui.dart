@@ -8,7 +8,8 @@ import 'package:intl/intl.dart';
 
 class SearchBarUI extends StatefulWidget {
   AllCoursesModel model;
-  SearchBarUI({this.model});
+  String courseName;
+  SearchBarUI({this.model,this.courseName});
 
   @override
   _SearchBarUIState createState() => _SearchBarUIState();
@@ -16,10 +17,23 @@ class SearchBarUI extends StatefulWidget {
 
 class _SearchBarUIState extends State<SearchBarUI> {
   bool _buttonActive = false;
-  TextEditingController _controller = new TextEditingController();
+
+  final _controller = new TextEditingController();
 
   @override
+  void initState() {
+    if(widget.courseName != null){
+      setState(() {
+        _controller.text = widget.courseName;
+      });
+    }
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+
+
+    print(widget.courseName);
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 18),
       child: Row(
@@ -46,31 +60,34 @@ class _SearchBarUIState extends State<SearchBarUI> {
                     Expanded(
                       child: Container(
                         padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: TextFormField(
-                          onFieldSubmitted: (v){
-                            widget.model.getCourses(v);
-                            FocusScope.of(context).requestFocus(FocusNode());
-                          },
-                          controller: _controller,
-                          style: TextStyle(
-                            fontFamily: 'WorkSans',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: DesignCourseAppTheme.nearlyBlue,
-                          ),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration.collapsed(
-                            hintText: 'Search for course',
-                            hintStyle: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              letterSpacing: 0.2,
-                              color: HexColor('#B9BABC'),
-                            ),
-                            border: InputBorder.none,
+                        child: Form(
+                          child: TextFormField(
 
+                            onFieldSubmitted: (v){
+                              widget.model.search(v);
+                              FocusScope.of(context).requestFocus(FocusNode());
+                            },
+                            controller: _controller,
+                            style: TextStyle(
+                              fontFamily: 'WorkSans',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: DesignCourseAppTheme.nearlyBlue,
+                            ),
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration.collapsed(
+                              hintText: 'Search for course',
+                              hintStyle: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                letterSpacing: 0.2,
+                                color: HexColor('#B9BABC'),
+                              ),
+                              border: InputBorder.none,
+
+                            ),
+                            onEditingComplete: () {},
                           ),
-                          onEditingComplete: () {},
                         ),
                       ),
                     ),
@@ -81,7 +98,8 @@ class _SearchBarUIState extends State<SearchBarUI> {
                         icon: Icon(Icons.search),
                         color: HexColor('#B9BABC'),
                         onPressed: (){
-                            widget.model.getCourses(_controller.text);
+                            FocusScope.of(context).requestFocus(FocusNode());
+                            widget.model.search(_controller.text);
                         },
                       ),
                     )

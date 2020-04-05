@@ -19,6 +19,12 @@ class _BaseViewState<T extends BaseModel> extends State<BaseView<T>> {
   T model = locator<T>();
 
   @override
+  void dispose() {
+    
+    super.dispose();
+  }
+
+  @override
   void initState() {
     if (widget.onModelReady != null) {
       widget.onModelReady(model);

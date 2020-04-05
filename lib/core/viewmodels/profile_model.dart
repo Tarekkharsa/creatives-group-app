@@ -134,5 +134,4 @@ class ProfileModel extends BaseModel {
     }
   }
 
-
 }
