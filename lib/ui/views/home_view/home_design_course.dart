@@ -180,9 +180,10 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(24.0)),
                                           onTap: () {
-                                            Navigator.pushNamed(
-                                                context, 'allCourses',
-                                                arguments: '');
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => AllCourses(courseName:'' , categoryList :_model.categories)),
+                                            );
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.only(
@@ -274,7 +275,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             child: Row(
               children: <Widget>[
                 getCategoryBtn2(
-                    categoryListApi[index].name, categoryListApi[index].id),
+                    categoryListApi[index].name, categoryListApi[index].id,categoryListApi),
               ],
             ),
           ),
@@ -337,7 +338,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     );
   }
 
-  Widget getCategoryBtn2(String text, int id) {
+  Widget getCategoryBtn2(String text, int id,List<Category> categoryListApi) {
     return Container(
       decoration: BoxDecoration(
           color: DesignCourseAppTheme.nearlyBlue,
@@ -353,7 +354,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AllCourses(category_id: id)),
+              MaterialPageRoute(builder: (context) => AllCourses(category_id: id , categoryList :categoryListApi)),
             );
 
           },
@@ -408,8 +409,11 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                         child: TextFormField(
                           onFieldSubmitted: (v) {
                             if (v != '') {
-                              Navigator.pushNamed(context, 'allCourses',
-                                  arguments: _controller.text);
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AllCourses(courseName:_controller.text , categoryList :_model.categories)),
+                              );
                             }
                             FocusScope.of(context).requestFocus(FocusNode());
                           },
@@ -443,8 +447,10 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                         color: HexColor('#B9BABC'),
                         onPressed: () {
                           if (_controller.text != '') {
-                            Navigator.pushNamed(context, 'allCourses',
-                                arguments: _controller.text);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => AllCourses(courseName:_controller.text , categoryList :_model.categories)),
+                            );
                           }
                         },
                       ),

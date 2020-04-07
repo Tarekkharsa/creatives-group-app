@@ -15,7 +15,8 @@ import 'home_view/popular_course_list_view.dart';
 class AllCourses extends StatefulWidget {
   String courseName;
   int category_id;
-  AllCourses({this.courseName, this.category_id});
+  List<Category> categoryList;
+  AllCourses({this.courseName, this.categoryList ,this.category_id});
   @override
   _AllCoursesState createState() => _AllCoursesState();
 }
@@ -40,7 +41,7 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return BaseView<AllCoursesModel>(
       onModelReady: (model) {
-        model.getCategories();
+//        model.getCategories();
         if (widget.category_id != null) {
           model.getCoursesByCategory(widget.category_id);
         } else {
@@ -61,10 +62,10 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
               ),
               AppBarUI(page: 3),
               SearchBarUI(model: model, courseName: widget.courseName),
-              (model.categories != null)
+              (widget.categoryList != null)
                   ? Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                      child: getCategoryBtn(model.categories),
+                      child: getCategoryBtn(widget.categoryList),
                     )
                   : SizedBox(),
               Expanded(
@@ -169,7 +170,8 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
   Widget getCategoryBtn2(String text, int id) {
     return Container(
       decoration: BoxDecoration(
-          color: DesignCourseAppTheme.nearlyBlue,
+          color: (widget.category_id != null && widget.category_id == id)? DesignCourseAppTheme.nearlyWhite
+         : DesignCourseAppTheme.nearlyBlue,
 //                ? DesignCourseAppTheme.nearlyBlue
 //                : DesignCourseAppTheme.nearlyWhite,
           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
@@ -180,6 +182,9 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
           splashColor: Colors.white24,
           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
           onTap: () {
+            setState(() {
+              widget.category_id = id;
+            });
             FocusScope.of(context).requestFocus(FocusNode());
             _model.getCoursesByCategory(id);
           },
@@ -194,7 +199,8 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
                   letterSpacing: 0.27,
-                  color: DesignCourseAppTheme.nearlyWhite,
+                  color:(widget.category_id != null && widget.category_id == id)? DesignCourseAppTheme.nearlyBlue
+                      :DesignCourseAppTheme.nearlyWhite,
                 ),
               ),
             ),
