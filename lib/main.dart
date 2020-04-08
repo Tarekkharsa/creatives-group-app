@@ -52,8 +52,7 @@ class MyApp extends StatelessWidget {
         home: SplashScreen.navigate(
             name: 'assets/splashScreen.flr',
             startAnimation: 'Untitled',
-            next:(context)=> PinCodeVerificationScreen(
-                "tarekkh1997@gmail.com"),
+            next:(context)=> DesignCourseHomeScreen(),
           until: () => Future.delayed(Duration(seconds: 1)),
           backgroundColor: Color(0xFFFFFFFF),
         ),

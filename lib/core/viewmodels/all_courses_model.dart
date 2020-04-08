@@ -19,14 +19,18 @@ class AllCoursesModel extends BaseModel {
 
   List<Category> categories;
   List<Course> courses;
-  String _courseName;
 
-  String get courseName => _courseName;
 
-  void setCourseName(String vlaue){
-    _courseName = vlaue;
+  int _isSearch = 0;
+
+  int get isSearch => _isSearch;
+
+  void setIsSearch(int vlaue){
+    _isSearch = vlaue;
     notifyListeners();
   }
+
+
 
   Future search(name) async {
     setState(ViewState.Busy);

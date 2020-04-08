@@ -65,6 +65,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
 
                             onFieldSubmitted: (v){
                               widget.model.search(v);
+                              widget.model.setIsSearch(1);
                               FocusScope.of(context).requestFocus(FocusNode());
                             },
                             controller: _controller,
@@ -99,6 +100,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
                         color: HexColor('#B9BABC'),
                         onPressed: (){
                             FocusScope.of(context).requestFocus(FocusNode());
+                            widget.model.setIsSearch(1);
                             widget.model.search(_controller.text);
                         },
                       ),

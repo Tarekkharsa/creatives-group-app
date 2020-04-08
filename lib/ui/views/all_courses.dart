@@ -39,9 +39,9 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
     return BaseView<AllCoursesModel>(
       onModelReady: (model) {
-//        model.getCategories();
         if (widget.category_id != null) {
           model.getCoursesByCategory(widget.category_id);
         } else {
@@ -168,6 +168,9 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
   }
 
   Widget getCategoryBtn2(String text, int id) {
+    if(_model.isSearch ==1){
+      widget.category_id = null;
+    }
     return Container(
       decoration: BoxDecoration(
           color: (widget.category_id != null && widget.category_id == id)? DesignCourseAppTheme.nearlyWhite
@@ -184,9 +187,11 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
           onTap: () {
             setState(() {
               widget.category_id = id;
+              _model.setIsSearch(0);
             });
             FocusScope.of(context).requestFocus(FocusNode());
             _model.getCoursesByCategory(id);
+
           },
           child: Padding(
             padding:
