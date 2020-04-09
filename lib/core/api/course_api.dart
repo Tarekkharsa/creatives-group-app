@@ -43,7 +43,7 @@ class CourseApi {
       Response response = await Dio().get("${Constants.URL}searchCourse?q=${name}");
       if (response.statusCode == 200) {
         courseList = Course.fromJsonList(response.data['data']);
-        print(response);
+//        print(response);
       }
     } catch (e) {
       return null;
@@ -58,7 +58,7 @@ class CourseApi {
       Response response = await Dio().get("${Constants.URL}getCourse?id=${id}");
       if (response.statusCode == 200) {
         course = Course.fromJson(response.data['data']);
-        print(response.data['data']);
+//        print(response.data['data']);
       }
     } catch (e) {
       return null;

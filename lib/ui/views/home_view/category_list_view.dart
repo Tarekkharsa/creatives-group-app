@@ -36,7 +36,7 @@ class _CategoryListViewState extends State<CategoryListView>
   @override
   void dispose() {
     // Clean up the controller when the Widget is disposed
-    animationController?.dispose();
+    animationController.dispose();
     super.dispose();
   }
 

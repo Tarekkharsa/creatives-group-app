@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -38,6 +39,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
 
   CourseModel _model;
 
+
   @override
   void initState() {
     animationController = AnimationController(
@@ -47,8 +49,8 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
         curve: Interval(0, 1.0, curve: Curves.fastOutSlowIn)));
     setData();
 
-
     super.initState();
+
   }
 
 

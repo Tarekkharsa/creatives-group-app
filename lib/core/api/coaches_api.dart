@@ -11,7 +11,7 @@ class CoachesApi {
       Response response = await Dio().get("${Constants.URL}getCoaches");
       if (response.statusCode == 200) {
         coaches = Coach.fromJsonList(response.data['data']);
-        print(response);
+//        print(response);
       }
     } catch (e) {
       return null;

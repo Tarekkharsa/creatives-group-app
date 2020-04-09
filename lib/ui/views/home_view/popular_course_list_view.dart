@@ -7,6 +7,7 @@ import 'package:creativesapp/core/viewmodels/home_model.dart';
 import 'package:creativesapp/locator.dart';
 import 'package:creativesapp/ui/Themes/design_course_app_theme.dart';
 import 'package:creativesapp/ui/themes/HexColor.dart';
+import 'package:creativesapp/ui/views/course_info_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../base_view.dart';
@@ -42,8 +43,7 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    animationController?.dispose();
+    animationController.dispose();
     super.dispose();
   }
 
@@ -131,7 +131,11 @@ class CategoryView extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.transparent,
               onTap: () {
-                Navigator.pushNamed(context, 'course', arguments: course.id.toString());
+//                Navigator.pushNamed(context, 'course', arguments: course.id.toString());
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CourseInfoScreen(id: course.id.toString() )),
+                );
               },
               child: SizedBox(
                 height: 280,

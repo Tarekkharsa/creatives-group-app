@@ -25,6 +25,12 @@ class CourseModel extends BaseModel{
   String msg;
 
 
+
+
+
+
+
+
   Future registerCourse(data) async{
     setState(ViewState.Busy);
    msg = await _userApi.registerCourse(data);
@@ -52,12 +58,12 @@ class CourseModel extends BaseModel{
     setState(ViewState.Idle);
   }
 
-  @override
-  void dispose() {
-    CourseModel().dispose();
-    print('course model dispose');
-    super.dispose();
-  }
 
+
+//@override
+//  void dispose() {
+//  print('disposed from model ');
+//    super.dispose();
+//  }
 
 }

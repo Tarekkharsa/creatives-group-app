@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:creativesapp/core/enums/connectivity_status.dart';
 import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/models/category.dart';
 import 'package:creativesapp/core/viewmodels/all_courses_model.dart';
@@ -10,6 +11,7 @@ import 'package:creativesapp/ui/themes/HexColor.dart';
 import 'package:creativesapp/ui/views/home_view/category_list_view.dart';
 import 'package:creativesapp/ui/views/home_view/popular_course_list_view.dart';
 import 'package:creativesapp/ui/widgets/app_bar.dart';
+import 'package:creativesapp/ui/widgets/connect_model.dart';
 import 'package:creativesapp/ui/widgets/custom_drawer.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -19,6 +21,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:provider/provider.dart';
 
 import '../../../locator.dart';
 import '../all_courses.dart';
@@ -74,6 +77,12 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var connectionStatus = Provider.of<ConnectivityStatus>(context);
+    if (connectionStatus == ConnectivityStatus.Offline) {
+      print('no connect');
+      SnackBarConnection(_scaffoldKey);
+    }
+
     final double right = MediaQuery.of(context).size.width * 0.7;
 
     int screenWidth = MediaQuery.of(context).size.width.floor();
@@ -182,7 +191,12 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                                           onTap: () {
                                             Navigator.push(
                                               context,
-                                              MaterialPageRoute(builder: (context) => AllCourses(courseName:'' , categoryList :_model.categories)),
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      AllCourses(
+                                                          courseName: '',
+                                                          categoryList: _model
+                                                              .categories)),
                                             );
                                           },
                                           child: Padding(
@@ -274,8 +288,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             padding: const EdgeInsets.only(left: 5, right: 5),
             child: Row(
               children: <Widget>[
-                getCategoryBtn2(
-                    categoryListApi[index].name, categoryListApi[index].id,categoryListApi),
+                getCategoryBtn2(categoryListApi[index].name,
+                    categoryListApi[index].id, categoryListApi),
               ],
             ),
           ),
@@ -338,7 +352,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     );
   }
 
-  Widget getCategoryBtn2(String text, int id,List<Category> categoryListApi) {
+  Widget getCategoryBtn2(String text, int id, List<Category> categoryListApi) {
     return Container(
       decoration: BoxDecoration(
           color: DesignCourseAppTheme.nearlyBlue,
@@ -354,9 +368,10 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AllCourses(category_id: id , categoryList :categoryListApi)),
+              MaterialPageRoute(
+                  builder: (context) => AllCourses(
+                      category_id: id, categoryList: categoryListApi)),
             );
-
           },
           child: Padding(
             padding:
@@ -409,10 +424,12 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                         child: TextFormField(
                           onFieldSubmitted: (v) {
                             if (v != '') {
-
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => AllCourses(courseName:_controller.text , categoryList :_model.categories)),
+                                MaterialPageRoute(
+                                    builder: (context) => AllCourses(
+                                        courseName: _controller.text,
+                                        categoryList: _model.categories)),
                               );
                             }
                             FocusScope.of(context).requestFocus(FocusNode());
@@ -449,7 +466,10 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                           if (_controller.text != '') {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => AllCourses(courseName:_controller.text , categoryList :_model.categories)),
+                              MaterialPageRoute(
+                                  builder: (context) => AllCourses(
+                                      courseName: _controller.text,
+                                      categoryList: _model.categories)),
                             );
                           }
                         },

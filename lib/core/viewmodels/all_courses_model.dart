@@ -20,7 +20,6 @@ class AllCoursesModel extends BaseModel {
   List<Category> categories;
   List<Course> courses;
 
-
   int _isSearch = 0;
 
   int get isSearch => _isSearch;

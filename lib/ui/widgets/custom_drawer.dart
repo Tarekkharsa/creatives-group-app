@@ -7,6 +7,7 @@ import 'package:creativesapp/core/viewmodels/login_model.dart';
 import 'package:creativesapp/ui/Themes/design_course_app_theme.dart';
 import 'package:creativesapp/ui/views/base_view.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerWidget extends StatefulWidget {
   @override
@@ -14,15 +15,33 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
+  DrawerModel _model;
+
+  setImage() async{
+    SharedPreferences user = await SharedPreferences.getInstance();
+    print("old img ${_model.userImg}");
+
+    if(user != null){
+    print("sherd img ${user.getString(Constants.PREF_IMAGE)}");
+      if(_model.userImg == user.getString(Constants.PREF_IMAGE)){
+
+      }else{
+        _model.setUserImg(user.getString(Constants.PREF_IMAGE));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 
+    setImage();
     return BaseView<DrawerModel>(
         onModelReady: (model) {
         model.LoggedIn();
         model.getUserName();
         model.getUserImg();
+        _model = model;
+
         } ,
       builder: (context, model, child) =>
       model.state == ViewState.Idle ? Drawer(
