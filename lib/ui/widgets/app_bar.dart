@@ -22,14 +22,8 @@ class AppBarUI extends StatelessWidget {
               : (page == 2)
                   ? new IconButton(
                       onPressed: () {
-//                        Navigator.pushNamed(context, '/');
-
-//                        Navigator.push(
-//                          context,
-//                          MaterialPageRoute(
-//                              builder: (context) => DesignCourseHomeScreen()),
-//                        );
-                        Navigator.pushAndRemoveUntil<void>(context, MaterialPageRoute(builder: (_) => DesignCourseHomeScreen()), (_) => false);
+                          Navigator.pop(context);
+//                        Navigator.pushAndRemoveUntil<void>(context, MaterialPageRoute(builder: (_) => DesignCourseHomeScreen()), (_) => false);
 
                       },
                       icon: Icon(

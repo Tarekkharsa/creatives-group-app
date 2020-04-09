@@ -18,12 +18,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
-
-import '../../../locator.dart';
 import '../all_courses.dart';
 import '../base_view.dart';
 
@@ -79,7 +76,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   Widget build(BuildContext context) {
     var connectionStatus = Provider.of<ConnectivityStatus>(context);
     if (connectionStatus == ConnectivityStatus.Offline) {
-      print('no connect');
       SnackBarConnection(_scaffoldKey);
     }
 
