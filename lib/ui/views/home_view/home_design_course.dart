@@ -84,7 +84,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     int screenWidth = MediaQuery.of(context).size.width.floor();
     // 411
     print(MediaQuery.of(context).size.width.floor());
-    return BaseView<HomeModel>(
+    return  BaseView<HomeModel>(
       onModelReady: (model) {
         model.getCategories();
         model.getCourses();

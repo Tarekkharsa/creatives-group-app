@@ -6,7 +6,9 @@ import 'package:creativesapp/core/viewmodels/drawer_model.dart';
 import 'package:creativesapp/core/viewmodels/login_model.dart';
 import 'package:creativesapp/ui/Themes/design_course_app_theme.dart';
 import 'package:creativesapp/ui/views/base_view.dart';
+import 'package:creativesapp/ui/views/queries_view.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -17,15 +19,14 @@ class DrawerWidget extends StatefulWidget {
 class _DrawerWidgetState extends State<DrawerWidget> {
   DrawerModel _model;
 
-  setImage() async{
+  setImage() async {
     SharedPreferences user = await SharedPreferences.getInstance();
     print("old img ${_model.userImg}");
 
-    if(user != null){
-    print("sherd img ${user.getString(Constants.PREF_IMAGE)}");
-      if(_model.userImg == user.getString(Constants.PREF_IMAGE)){
-
-      }else{
+    if (user != null) {
+      print("sherd img ${user.getString(Constants.PREF_IMAGE)}");
+      if (_model.userImg == user.getString(Constants.PREF_IMAGE)) {
+      } else {
         _model.setUserImg(user.getString(Constants.PREF_IMAGE));
       }
     }
@@ -33,136 +34,173 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     setImage();
     return BaseView<DrawerModel>(
         onModelReady: (model) {
-        model.LoggedIn();
-        model.getUserName();
-        model.getUserImg();
-        _model = model;
-
-        } ,
-      builder: (context, model, child) =>
-      model.state == ViewState.Idle ? Drawer(
-        child: ListView(children: <Widget>[
-          //Header
-          DrawerHeader(
-              padding: EdgeInsets.all(0),
-              child: Container(
-                  margin: EdgeInsets.all(0),
-                  padding:
-                      EdgeInsets.only(top: 5, bottom: 5, right: 0, left: 0),
-                  color: DesignCourseAppTheme.chipBackground,
-                  child: Column(
-                    children: <Widget>[
-                        Container(
-                         width: 120.0,
-                         height: 120.0,
-                         child: model.userImg != null? CircleAvatar(
-                          backgroundColor:
-                          Colors.transparent,
-                          backgroundImage:
-                          CachedNetworkImageProvider(
-                            '${Constants.StudentImage}' +
-                                model.userImg,
-                          ),
-                      ) :_imageProfile(),
-                       ),
-                      model.userName != null? Padding(
-                        padding: const EdgeInsets.only(top:5.0),
-                        child: Text(
-                          model.userName,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
+          model.LoggedIn();
+          model.getUserName();
+          model.getUserImg();
+          _model = model;
+        },
+        builder: (context, model, child) => model.state == ViewState.Idle
+            ? Drawer(
+                child: ListView(
+                  children: <Widget>[
+                    //Header
+                    DrawerHeader(
+                        padding: EdgeInsets.all(0),
+                        child: Container(
+                            margin: EdgeInsets.all(0),
+                            padding: EdgeInsets.only(
+                                top: 5, bottom: 5, right: 0, left: 0),
+                            color: DesignCourseAppTheme.chipBackground,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: 120.0,
+                                  height: 120.0,
+                                  child: model.userImg != null
+                                      ? CircleAvatar(
+                                          backgroundColor: Colors.transparent,
+                                          backgroundImage:
+                                              CachedNetworkImageProvider(
+                                            '${Constants.StudentImage}' +
+                                                model.userImg,
+                                          ),
+                                        )
+                                      : _imageProfile(),
+                                ),
+                                model.userName != null
+                                    ? Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: Text(
+                                          model.userName,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
 //                            fontWeight: FontWeight.w600,
-                            fontSize: 19,
-                          ),
-                        ),
-                      ) : SizedBox(),
-                    ],
-                  ))),
+                                            fontSize: 19,
+                                          ),
+                                        ),
+                                      )
+                                    : SizedBox(),
+                              ],
+                            ))),
 
-          model.isLoggedIn
-              ? ListTile(
-                  leading: IconButton(
-                    icon: Icon(Icons.account_circle),
-                    onPressed: () {},
-                  ),
-                  title: Text("Profile"),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'profile' );
-                  },
-                )
-              : SizedBox(),
-          (model.isLoggedIn == false)
-              ? ListTile(
-                  leading: IconButton(
-                    icon: Icon(Icons.assignment_ind),
-                    onPressed: () {},
-                  ),
-                  title: Text("Register"),
-                  onTap: () {
-                    Navigator.of(context).pop();
+                    model.isLoggedIn
+                        ? ListTile(
+                            leading: IconButton(
+                              icon: Icon(Icons.account_circle),
+                              onPressed: () {},
+                            ),
+                            title: Text("Profile"),
+                            onTap: () {
+                              Navigator.pushNamed(context, 'profile');
+                            },
+                          )
+                        : SizedBox(),
+                    (model.isLoggedIn == false)
+                        ? ListTile(
+                            leading: IconButton(
+                              icon: Icon(Icons.assignment_ind),
+                              onPressed: () {},
+                            ),
+                            title: Text("Register"),
+                            onTap: () {
+                              Navigator.of(context).pop();
 
-                    Navigator.pushNamed(context, 'register', );
-                  },
-                )
-              : SizedBox(),
-          (model.isLoggedIn == false)
-              ? ListTile(
-                  leading: IconButton(
-                    icon: Icon(Icons.email),
-                    onPressed: () {},
-                  ),
-                  title: Text("login"),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.pushNamed(context, 'login');
-                  },
-                )
-              : SizedBox(),
+                              Navigator.pushNamed(
+                                context,
+                                'register',
+                              );
+                            },
+                          )
+                        : SizedBox(),
+                    (model.isLoggedIn == false)
+                        ? ListTile(
+                            leading: IconButton(
+                              icon: Icon(Icons.email),
+                              onPressed: () {},
+                            ),
+                            title: Text("login"),
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              Navigator.pushNamed(context, 'login');
+                            },
+                          )
+                        : SizedBox(),
 
-          model.isLoggedIn == true
-              ? ListTile(
-                  leading: IconButton(
-                    icon: Icon(Icons.exit_to_app),
-                    onPressed: () {},
-                  ),
-                  title: Text('logout'),
-                  onTap: () {
-                    Navigator.of(context).pop();
-
-                    UserManager userManager2 = new UserManager();
-                    userManager2.logout();
-
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Row(
-                        children: <Widget>[
-                          Icon(Icons.check_circle),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Text('loggedOutSuccess',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Poppins-Bold',
-                                fontSize: 14.0,
-                              )),
-                        ],
+                    model.isLoggedIn
+                        ? ListTile(
+                      leading: IconButton(
+                        icon: Icon(FontAwesomeIcons.handsHelping),
+                        onPressed: () {},
                       ),
-                    ));
-                  },
-                )
-              : SizedBox(),
-        ]),
-      ): Center(
-        child: CircularProgressIndicator(),
-      )
-    );
+                      title: Text("add Question"),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => QueriesView() ),
+                        );
+                      },
+                    )
+                        : SizedBox(),
+
+                    model.isLoggedIn
+                        ? ListTile(
+                      leading: IconButton(
+                        icon: Icon(Icons.help),
+                        onPressed: () {},
+                      ),
+                      title: Text("FeedBack"),
+                      onTap: () {
+                        Navigator.pushNamed(context, 'feedBack');
+                      },
+                    )
+                        : SizedBox(),
+
+                    model.isLoggedIn == true
+                        ? ListTile(
+                            leading: IconButton(
+                              icon: Icon(Icons.exit_to_app),
+                              onPressed: () {},
+                            ),
+                            title: Text('logout'),
+                            onTap: () {
+                              Navigator.of(context).pop();
+
+                              UserManager userManager2 = new UserManager();
+                              userManager2.logout();
+
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Row(
+                                  children: <Widget>[
+                                    Icon(Icons.check_circle),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Text('loggedOutSuccess',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Poppins-Bold',
+                                          fontSize: 14.0,
+                                        )),
+                                  ],
+                                ),
+                              ));
+                            },
+                          )
+                        : SizedBox(),
+                  ],
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ));
   }
+
   _imageProfile() {
     return Image.asset('assets/design_course/userImage.png');
-
   }
 }

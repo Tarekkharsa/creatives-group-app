@@ -60,10 +60,6 @@ class CourseModel extends BaseModel{
 
 
 
-//@override
-//  void dispose() {
-//  print('disposed from model ');
-//    super.dispose();
-//  }
+
 
 }

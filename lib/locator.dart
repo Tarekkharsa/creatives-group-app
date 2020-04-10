@@ -1,6 +1,7 @@
 
 import 'package:creativesapp/core/api/configuratio_api.dart';
 import 'package:creativesapp/core/viewmodels/all_courses_model.dart';
+import 'package:creativesapp/core/viewmodels/queries_model.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/api/category_api.dart';
@@ -43,4 +44,5 @@ void setupLocator() {
   locator.registerFactory(() => DrawerModel());
   locator.registerFactory(() => AllCoursesModel());
   locator.registerFactory(() => CourseModel());
+  locator.registerFactory(() => QueriesModel());
 }
