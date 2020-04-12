@@ -10,6 +10,8 @@ class User {
   String token;
   String university_id;
   State state;
+  String firebase_token;
+  String verification_code;
 
   User({
     this.id,
@@ -20,7 +22,9 @@ class User {
     this.image,
     this.university_id,
     this.email,
-    this.state
+    this.state,
+    this.firebase_token,
+    this.verification_code,
   });
 
 
@@ -36,6 +40,8 @@ class User {
             password: json['password'],
             name: json['name'],
             token: json['token'],
+            firebase_token: json['firebase_token'],
+            verification_code: json['verification_code'],
             image: json['image'],
             university_id: json['university_id'].toString(),
             state: State.fromJson(json['pivot']),

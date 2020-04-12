@@ -6,7 +6,7 @@ import 'package:creativesapp/core/viewmodels/drawer_model.dart';
 import 'package:creativesapp/core/viewmodels/login_model.dart';
 import 'package:creativesapp/ui/Themes/design_course_app_theme.dart';
 import 'package:creativesapp/ui/views/base_view.dart';
-import 'package:creativesapp/ui/views/queries_view.dart';
+import 'package:creativesapp/ui/views/question_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -138,10 +138,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       ),
                       title: Text("add Question"),
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => QueriesView() ),
+                              builder: (context) => QuestionView() ),
                         );
                       },
                     )

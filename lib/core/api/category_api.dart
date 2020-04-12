@@ -11,7 +11,7 @@ class CategoryApi {
   Future<List<Category>> getCategories() async {
     print("getCategories");
     try {
-      Response response = await Dio().get("${Constants.URL}getCategories",options: Options());
+      Response response = await Dio().get("${Constants.URL}getCategories");
       if (response.statusCode == 200) {
         categoryListApi = Category.fromJsonList(response.data['data']);
 //        print(response);

@@ -296,12 +296,6 @@ class CategoryView extends StatelessWidget {
                                     '${Constants.CoachesImage}' + coach.image,
                                   ),
                                 ),
-//                                FadeInImage.assetNetwork(
-//                                  placeholder:
-//                                      'assets/design_course/userImage.png',
-//                                  image: '${Constants.CoachesImage}' +
-//                                      coaches.image,
-//                                ),
                               ),
                             )
                           ],

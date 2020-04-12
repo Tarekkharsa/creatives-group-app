@@ -82,7 +82,7 @@ class ProfileModel extends BaseModel {
     print(data);
     setState(ViewState.Busy);
     User res = await _userApi.updateUser(data);
-    print(res);
+    print('res from profile model  = ${res} ');
     setUser(res);
     setState(ViewState.Idle);
     return res;

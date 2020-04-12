@@ -28,6 +28,7 @@ class UserApi {
     String url = '${Constants.URL}updateStudent';
     try {
       Response response = await Dio().post(url, data: data);
+      print(response);
       if (response.statusCode == 200) {
         user = User.fromJson(response.data['data']);
 
@@ -56,5 +57,10 @@ class UserApi {
     }
     return message ;
   }
+
+
+
+
+
 
 }
