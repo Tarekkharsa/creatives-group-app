@@ -71,8 +71,8 @@ class _ChatScreenState extends State<ChatScreen> {
                           _rightMessage(
                             messageBody: widget.question.question,
                             messageDateTime: widget.question.created_at,
-                            messageSenderAvatar:widget.userImg,
-                            messageSenderName: widget.userName,
+                            messageSenderAvatar:widget.question.user.image,
+                            messageSenderName: widget.question.user.name,
                             messageSenderPhone: '',
                           ),
 
@@ -152,10 +152,12 @@ class _ChatScreenState extends State<ChatScreen> {
                 height: 75,
               child: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                backgroundImage:
+                backgroundImage: messageSenderAvatar != null ?
                 CachedNetworkImageProvider(
                   '${Constants.StudentImage}' +
                       messageSenderAvatar,
+                ):AssetImage(
+                  'assets/design_course/userImage.png'
                 ),
               ),
               ),

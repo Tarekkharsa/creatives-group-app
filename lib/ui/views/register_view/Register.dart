@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:creativesapp/core/enums/connectivity_status.dart';
 import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/viewmodels/register_model.dart';
 import 'package:creativesapp/ui/themes/HexColor.dart';
 import 'package:creativesapp/ui/views/home_view/home_design_course.dart';
 import 'package:creativesapp/ui/widgets/CustomIcons.dart';
 import 'package:creativesapp/ui/widgets/SocialIcon.dart';
+import 'package:creativesapp/ui/widgets/connect_model.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,10 +32,22 @@ class _RegisterState extends State<Register> {
   TextEditingController passwordController = new TextEditingController();
   TextEditingController nameController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
-//  String _mySelection;
+  String firebaseToken;
 
   bool _isSelected = false;
   bool _isLoading = false;
+
+  final FirebaseMessaging _fcm = FirebaseMessaging();
+
+  @override
+  void initState() {
+    _fcm.getToken().then((token) {
+      firebaseToken = token;
+      print(token);
+    });
+    super.initState();
+  }
+
 
   void _radio() {
     setState(() {
@@ -74,6 +89,7 @@ class _RegisterState extends State<Register> {
     ScreenUtil.instance =
         ScreenUtil(width: 750, height: 1334, allowFontScaling: true)
           ..init(context);
+
 
     return BaseView<RegisterModel>(
       onModelReady: (model) {
@@ -401,13 +417,27 @@ class _RegisterState extends State<Register> {
   }
 
   _register(model) async {
-    var data = {
-      'email': emailController.text,
-      'password': passwordController.text,
-      'name': nameController.text,
-      'phone': phoneController.text,
-      'university_id': model.UniversityId,
-    };
+    var data;
+    if(firebaseToken != null){
+       data = {
+        'email': emailController.text,
+        'password': passwordController.text,
+        'name': nameController.text,
+        'phone': phoneController.text,
+        'university_id': model.UniversityId,
+        'firebase_token' : firebaseToken,
+
+      };
+    }else{
+      data = {
+        'email': emailController.text,
+        'password': passwordController.text,
+        'name': nameController.text,
+        'phone': phoneController.text,
+        'university_id': model.UniversityId,
+      };
+    }
+
     print(data);
 
     var res = await model.register(data);

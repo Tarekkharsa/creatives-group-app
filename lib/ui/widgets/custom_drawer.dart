@@ -133,12 +133,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     model.isLoggedIn
                         ? ListTile(
                       leading: IconButton(
-                        icon: Icon(FontAwesomeIcons.handsHelping),
+                        icon: Icon(Icons.live_help),
                         onPressed: () {},
                       ),
                       title: Text("add Question"),
                       onTap: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => QuestionView() ),
@@ -150,7 +150,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     model.isLoggedIn
                         ? ListTile(
                       leading: IconButton(
-                        icon: Icon(Icons.help),
+                        icon: Icon(Icons.feedback),
                         onPressed: () {},
                       ),
                       title: Text("FeedBack"),

@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:creativesapp/core/enums/connectivity_status.dart';
 import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/viewmodels/home_model.dart';
 import 'package:creativesapp/core/viewmodels/login_model.dart';
@@ -10,10 +11,13 @@ import 'package:creativesapp/ui/views/base_view.dart';
 import 'package:creativesapp/ui/views/home_view/home_design_course.dart';
 import 'package:creativesapp/ui/widgets/CustomIcons.dart';
 import 'package:creativesapp/ui/widgets/SocialIcon.dart';
+import 'package:creativesapp/ui/widgets/connect_model.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,8 +35,6 @@ class _LoginState extends State<Login> {
   final  _fbKey = GlobalKey<FormBuilderState>();
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
-
-
 
   @override
   void dispose() {
@@ -85,7 +87,6 @@ class _LoginState extends State<Login> {
     ScreenUtil.instance =
     ScreenUtil(width: 750, height: 1364, allowFontScaling: true)
       ..init(context);
-
 
     return BaseView<LoginModel>(
       onModelReady: (model){

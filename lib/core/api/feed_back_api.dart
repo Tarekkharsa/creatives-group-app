@@ -1,21 +1,23 @@
 
 
+import 'package:creativesapp/core/models/feedBack.dart';
 import 'package:creativesapp/core/utils/Constants.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class FeedBackApi{
 
-String msg;
+MyFeedBack msg;
 
 
-  Future<String> sendFeedBack(data) async {
+  Future<MyFeedBack> sendFeedBack(data) async {
     print('sendFeedBack');
     String url = '${Constants.URL}feedback/add';
     try {
       Response response = await Dio().post(url, data: data);
       if (response.statusCode == 200) {
-        msg = response.data['data'];
-        print(response.data['data']);
+      
+      msg =MyFeedBack.fromJson(response.data['data']);
       }
     } catch (e) {
       return null;

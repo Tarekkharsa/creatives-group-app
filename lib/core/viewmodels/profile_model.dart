@@ -124,7 +124,9 @@ class ProfileModel extends BaseModel {
     });
     setState(ViewState.imageUpload);
     User result = await _userApi.updateUser(formData);
+    if(result != null ){
     setUser(result);
+    }
     setState(ViewState.Idle);
     print(result);
     if (result != null) {

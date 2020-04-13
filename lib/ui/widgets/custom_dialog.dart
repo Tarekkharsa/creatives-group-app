@@ -10,10 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomDialog extends StatefulWidget {
+final GlobalKey<ScaffoldState> scaffoldKey;
 
   List<Course> courses;
 
-  CustomDialog({this.courses});
+  CustomDialog({this.courses,this.scaffoldKey});
 
   @override
   _CustomDialogState createState() => _CustomDialogState();
@@ -46,7 +47,7 @@ class _CustomDialogState extends State<CustomDialog> {
 
     return BaseView<QuestionModel>(
       onModelReady: (model) {
-
+        model.getCourses();
         _model = model;
 
       },
@@ -149,7 +150,7 @@ class _CustomDialogState extends State<CustomDialog> {
                               ],
                             ),
                           ),
-                          (widget.courses != null)
+                          (model.courses != null)
                               ? Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: _getCoursesDropDown(context),
@@ -175,7 +176,7 @@ class _CustomDialogState extends State<CustomDialog> {
                                       Navigator.pushReplacement(context, MaterialPageRoute(builder:
                                       (context) => QuestionView() ));
                                     }else{
-                                      _msg(context, 'conection error!!', Icons.error_outline,_scaffoldKey);
+                                      _msg(context, 'conection error!!', Icons.error_outline,widget.scaffoldKey);
                                     }
                                   }
                                 },
@@ -278,7 +279,7 @@ class _CustomDialogState extends State<CustomDialog> {
       ),
       hint: Text('General Question'),
       validators: [FormBuilderValidators.required()],
-      items: widget.courses
+      items: _model.courses
           .map(
             (item) => DropdownMenuItem(
               value: item.id,

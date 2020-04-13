@@ -29,9 +29,9 @@ class MapScreenState extends State<ProfilePage>
   var mySelection;
   String img;
 
-  TextEditingController emailController= new TextEditingController();
-  TextEditingController nameController= new TextEditingController();
-  TextEditingController phoneController= new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController phoneController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
 
   bool _status = true;
@@ -47,17 +47,13 @@ class MapScreenState extends State<ProfilePage>
     nameController?.dispose();
     phoneController?.dispose();
     super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseView<ProfileModel>(onModelReady: (model) {
-
       model.getUser();
       model.getUniversities();
-
-
     }, builder: (context, model, child) {
       _model = model;
       if (_model.user != null) {
@@ -67,7 +63,7 @@ class MapScreenState extends State<ProfilePage>
       }
 
       return Scaffold(
-          body: (model.user != null)? new Container(
+          body: new Container(
         color: Colors.white,
         child: Column(
           children: <Widget>[
@@ -79,7 +75,7 @@ class MapScreenState extends State<ProfilePage>
               child: LiquidPullToRefresh(
                 color: DesignCourseAppTheme.nearlyBlue,
                 showChildOpacityTransition: false,
-              onRefresh: _handleRefresh,
+                onRefresh: _handleRefresh,
                 child: new ListView(
                   children: <Widget>[
                     Column(
@@ -91,10 +87,12 @@ class MapScreenState extends State<ProfilePage>
                             children: <Widget>[
                               Padding(
                                 padding: EdgeInsets.only(top: 20.0),
-                                child: new Stack(fit: StackFit.loose, children: <
-                                    Widget>[
+                                child:
+                                    new Stack(fit: StackFit.loose, children: <
+                                        Widget>[
                                   new Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       (img != null)
@@ -122,7 +120,8 @@ class MapScreenState extends State<ProfilePage>
                                             )
                                           : (_model.state !=
                                                       ViewState.imageUpload &&
-                                                  _model.state != ViewState.Busy)
+                                                  _model.state !=
+                                                      ViewState.Busy)
                                               ? _imageProfile()
                                               : Container(
                                                   width: 140.0,
@@ -165,9 +164,15 @@ class MapScreenState extends State<ProfilePage>
                             ],
                           ),
                         ),
-                        (_model.state == ViewState.Idle ||
-                                _model.state == ViewState.imageUpload)
-                            ? new Container(
+                        (_model.state == ViewState.Busy &&
+                                _model.state != ViewState.imageUpload)
+                            ? Padding(
+                                padding: const EdgeInsets.only(top: 120.0),
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              )
+                            : new Container(
                                 color: Color(0xffFFFFFF),
                                 child: Padding(
                                   padding: EdgeInsets.only(bottom: 25.0),
@@ -177,7 +182,8 @@ class MapScreenState extends State<ProfilePage>
                                     child: new Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: <Widget>[
                                         Padding(
                                             padding: EdgeInsets.only(
@@ -186,13 +192,15 @@ class MapScreenState extends State<ProfilePage>
                                                 top: 0.0),
                                             child: new Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               mainAxisSize: MainAxisSize.max,
                                               children: <Widget>[
                                                 new Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: <Widget>[
                                                     new Text(
                                                       'Parsonal Information',
@@ -206,7 +214,8 @@ class MapScreenState extends State<ProfilePage>
                                                 new Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: <Widget>[
                                                     _status
                                                         ? _getEditIcon()
@@ -227,7 +236,8 @@ class MapScreenState extends State<ProfilePage>
                                                 new Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: <Widget>[
                                                     new Text(
                                                       'Name',
@@ -249,7 +259,8 @@ class MapScreenState extends State<ProfilePage>
                                               mainAxisSize: MainAxisSize.max,
                                               children: <Widget>[
                                                 new Flexible(
-                                                  child: new FormBuilderTextField(
+                                                  child:
+                                                      new FormBuilderTextField(
                                                     readOnly: _status,
                                                     controller: nameController,
                                                     decoration: InputDecoration(
@@ -278,7 +289,8 @@ class MapScreenState extends State<ProfilePage>
                                                 new Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: <Widget>[
                                                     new Text(
                                                       'Email ID',
@@ -300,7 +312,8 @@ class MapScreenState extends State<ProfilePage>
                                               mainAxisSize: MainAxisSize.max,
                                               children: <Widget>[
                                                 new Flexible(
-                                                  child: new FormBuilderTextField(
+                                                  child:
+                                                      new FormBuilderTextField(
                                                     readOnly: true,
                                                     initialValue:
                                                         model.user?.email,
@@ -331,7 +344,8 @@ class MapScreenState extends State<ProfilePage>
                                                 new Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: <Widget>[
                                                     new Text(
                                                       'Mobile',
@@ -353,7 +367,8 @@ class MapScreenState extends State<ProfilePage>
                                               mainAxisSize: MainAxisSize.max,
                                               children: <Widget>[
                                                 new Flexible(
-                                                  child: new FormBuilderTextField(
+                                                  child:
+                                                      new FormBuilderTextField(
                                                     initialValue:
                                                         model.user?.phone,
                                                     readOnly: _status,
@@ -382,7 +397,8 @@ class MapScreenState extends State<ProfilePage>
                                                 new Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: <Widget>[
                                                     new Text(
                                                       'Password',
@@ -404,7 +420,8 @@ class MapScreenState extends State<ProfilePage>
                                               mainAxisSize: MainAxisSize.max,
                                               children: <Widget>[
                                                 new Flexible(
-                                                  child: new FormBuilderTextField(
+                                                  child:
+                                                      new FormBuilderTextField(
                                                     readOnly: _status,
                                                     controller:
                                                         passwordController,
@@ -428,7 +445,8 @@ class MapScreenState extends State<ProfilePage>
                                               child:
 //                                        universitiesList != null &&
 //                                                _model.state != ViewState.Busy
-                                                  _model?.universities != null &&
+                                                  _model?.universities !=
+                                                              null &&
                                                           _model.universities
                                                                   .length !=
                                                               0 &&
@@ -448,12 +466,6 @@ class MapScreenState extends State<ProfilePage>
                                   ),
                                 ),
                               )
-                            : Padding(
-                                padding: const EdgeInsets.only(top: 120.0),
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              )
                       ],
                     ),
                   ],
@@ -462,10 +474,7 @@ class MapScreenState extends State<ProfilePage>
             ),
           ],
         ),
-      ):Center(
-            child: CircularProgressIndicator(),
-          ),
-      );
+      ));
     });
   }
 
@@ -555,8 +564,6 @@ class MapScreenState extends State<ProfilePage>
     );
   }
 
-
-
   _imageProfile() {
     return _image == null
         ? Image.asset('assets/design_course/userImage.png')
@@ -601,7 +608,6 @@ class MapScreenState extends State<ProfilePage>
       ),
     );
   }
-
 
   Future<void> _handleRefresh() async {
     _model.getUser();

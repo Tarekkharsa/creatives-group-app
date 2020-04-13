@@ -1,13 +1,16 @@
+import 'package:creativesapp/core/enums/connectivity_status.dart';
 import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/models/category.dart';
 import 'package:creativesapp/core/viewmodels/all_courses_model.dart';
 import 'package:creativesapp/core/viewmodels/home_model.dart';
 import 'package:creativesapp/ui/themes/design_course_app_theme.dart';
 import 'package:creativesapp/ui/widgets/app_bar.dart';
+import 'package:creativesapp/ui/widgets/connect_model.dart';
 import 'package:creativesapp/ui/widgets/custom_drawer.dart';
 import 'package:creativesapp/ui/widgets/search_bar_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:provider/provider.dart';
 
 import 'base_view.dart';
 import 'home_view/popular_course_list_view.dart';
@@ -52,7 +55,7 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
       builder: (context, model, child) => Container(
         color: DesignCourseAppTheme.nearlyWhite,
         child: Scaffold(
-//          key: _scaffoldKey,
+          
           drawer: DrawerWidget(),
           backgroundColor: Colors.transparent,
           body: Column(

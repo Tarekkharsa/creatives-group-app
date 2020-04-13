@@ -2,10 +2,13 @@ import 'package:creativesapp/core/models/user.dart';
 import 'package:creativesapp/core/services/user_manager.dart';
 import 'package:creativesapp/core/utils/Constants.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class RegisterApi {
   User user;
   UserManager userManager = new UserManager();
+
+
 
   Future<int> register(data) async {
     int check = 404;
@@ -17,6 +20,7 @@ class RegisterApi {
         user = User.fromJson(response.data['data']);
         if (user != null) {
           userManager.login(user);
+
         }
       }
     } on DioError catch (e) {

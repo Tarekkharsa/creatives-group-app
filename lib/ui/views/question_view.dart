@@ -18,18 +18,62 @@ class QuestionView extends StatefulWidget {
 }
 
 class _QuestionViewState extends State<QuestionView> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController questionController = new TextEditingController();
   QuestionModel _model;
+
+  String myBackspace(String str) {
+    int i = 0;
+    while (str.length > 0) {
+      i++;
+      int removedCharCode = str.codeUnitAt(str.length - 1);
+      if (isWellFormattedUTF16(removedCharCode)) break;
+      str = str.substring(0, str.length - 1);
+    }
+    if (i == 1) str = str.substring(0, str.length - 1);
+    print(str);
+    return str;
+  }
+
+  bool isWellFormattedUTF16(int charCode) {
+    int surrogateLeadingStart = 0xD800;
+    int surrogateLeadingEnd = 0xDBFF;
+    int surrogateTrailingStart = 0xDC00;
+    int surrogateTrailingEnd = 0xDFFF;
+    if (!(charCode >= surrogateLeadingStart &&
+            charCode <= surrogateLeadingEnd) &&
+        !(charCode >= surrogateTrailingStart &&
+            charCode <= surrogateTrailingEnd)) return true;
+    return false;
+  }
+
+  String getFirstWord(String myString) {
+    final RegExp REGEX_EMOJI = RegExp(
+        r'(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])');
+    if (myString.contains(REGEX_EMOJI)) {
+      myString = myString.replaceAll(REGEX_EMOJI, '');
+    }
+    String firstHalf;
+    if (myString.length > 20) {
+      firstHalf = myString.substring(0, 20);
+    } else {
+      firstHalf = myString;
+    }
+    return firstHalf;
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return BaseView<QuestionModel>(
       onModelReady: (model) {
-        model.getCourses();
+//        model.getCourses();
         model.getMyQuestion();
         model.getUser();
         _model = model;
       },
       builder: (context, model, child) => Scaffold(
+        key: _scaffoldKey,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Builder(
           builder: (BuildContext context) {
@@ -42,7 +86,7 @@ class _QuestionViewState extends State<QuestionView> {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) =>
-                            CustomDialog(courses: model.courses));
+                            CustomDialog(scaffoldKey:_scaffoldKey));
                   }
                 });
           },
@@ -75,8 +119,11 @@ class _QuestionViewState extends State<QuestionView> {
                       : (model.questions.length == 0)
                           ? ListView(
                               children: <Widget>[
-                                Center(
-                                  child: Text('not question avilable'),
+                                Padding(
+                                  padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.35),
+                                  child: Center(
+                                    child: Text('not question avilable'),
+                                  ),
                                 ),
                               ],
                             )
@@ -125,20 +172,34 @@ class _QuestionViewState extends State<QuestionView> {
                                             ),
                                           ),
                                           title: Text(
-                                              model.questions[index].question),
-                                          subtitle: Text(model
-                                              .questions[index].created_at),
+                                            getFirstWord(model.questions[index]
+                                                    .question) +
+                                                ' ....',
+                                            style: TextStyle(),
+                                          ),
+                                          subtitle: (model.questions[index]
+                                                      ?.course !=
+                                                  null)
+                                              ? Text(
+                                                  model.questions[index].course
+                                                      .title,
+                                                  style:
+                                                      TextStyle(fontSize: 12.0),
+                                                )
+                                              : Text('General Question',
+                                                  style: TextStyle(
+                                                      fontSize: 12.0)),
                                           onTap: () {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ChatScreen(
-                                                          question:
-                                                              model.questions[
-                                                                  index],userName :model.userName,
-                                                        userImg: model.userImg,
-                                                      ),
+                                                builder: (context) =>
+                                                    ChatScreen(
+                                                  question:
+                                                      model.questions[index],
+                                                  userName: model.userName,
+                                                  userImg: model.userImg,
+                                                ),
                                               ),
                                             );
                                           },

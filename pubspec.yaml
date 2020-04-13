@@ -53,7 +53,7 @@ dev_dependencies:
 
 
 flutter_icons:
-  image_path: 'assets/design_course/logo-png.png'
+  image_path: 'assets/design_course/circle-cropped.png'
   android: true
   ios: true
 # For information on the generic Dart part of this file, see the
@@ -73,6 +73,7 @@ flutter:
     - assets/image_01.png
     - assets/image_02.png
     - assets/splashScreen.flr
+    - assets/supportIcon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
