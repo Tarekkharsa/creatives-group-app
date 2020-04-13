@@ -24,7 +24,7 @@ class LoginApi {
         if (user != null) {
           userManager.login(user);
         }
-        if(user.firebase_token == null){
+      
           var data;
         String token =  await _fcm.getToken();
              data = {
@@ -33,7 +33,7 @@ class LoginApi {
             };
           print('data = ${data}');
            await _userApi.updateUser(data);
-        }
+        
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.DEFAULT) {
