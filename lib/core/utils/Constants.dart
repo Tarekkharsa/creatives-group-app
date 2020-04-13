@@ -14,6 +14,7 @@ class Constants {
   static const String PREF_ID = 'pref_id';
   static const String PREF_IMAGE = 'pref_image';
 
+  static const String KEY = 'sdgfdhsfgsfhsfhdagfshgfhsd';
 
 
 }

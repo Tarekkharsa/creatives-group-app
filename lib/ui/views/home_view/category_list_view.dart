@@ -197,7 +197,7 @@ class CategoryView extends StatelessWidget {
                                                   child: Row(
                                                     children: <Widget>[
                                                       Text(
-                                                        '4.9',
+                                                        '',
                                                         textAlign:
                                                             TextAlign.left,
                                                         style: TextStyle(
@@ -210,13 +210,13 @@ class CategoryView extends StatelessWidget {
                                                                   .grey,
                                                         ),
                                                       ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color:
-                                                            DesignCourseAppTheme
-                                                                .nearlyBlue,
-                                                        size: 20,
-                                                      ),
+//                                                      Icon(
+//                                                        Icons.star,
+//                                                        color:
+//                                                            DesignCourseAppTheme
+//                                                                .nearlyBlue,
+//                                                        size: 20,
+//                                                      ),
                                                     ],
                                                   ),
                                                 )

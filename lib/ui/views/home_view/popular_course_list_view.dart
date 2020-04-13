@@ -105,6 +105,7 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
 }
 
 class CategoryView extends StatelessWidget {
+
   const CategoryView(
       {Key key,
       this.course,
@@ -117,6 +118,8 @@ class CategoryView extends StatelessWidget {
   final Course course;
   final AnimationController animationController;
   final Animation<dynamic> animation;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -203,26 +206,27 @@ class CategoryView extends StatelessWidget {
                                                   child: Row(
                                                     children: <Widget>[
                                                       Text(
-                                                        '4.9',
+                                                        '',
                                                         textAlign:
                                                             TextAlign.left,
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w200,
-                                                          fontSize: 18,
+                                                          fontSize: 10,
                                                           letterSpacing: 0.27,
                                                           color:
                                                               DesignCourseAppTheme
                                                                   .grey,
                                                         ),
                                                       ),
-                                                      Icon(
+//                                                      (course.start_date )
+                                                      (course.end_date == null ) ?Icon(
                                                         Icons.star,
                                                         color:
                                                             DesignCourseAppTheme
                                                                 .nearlyBlue,
                                                         size: 20,
-                                                      ),
+                                                      ) : SizedBox(),
                                                     ],
                                                   ),
                                                 )

@@ -171,11 +171,11 @@ class _RegisterState extends State<Register> {
                                     width:
                                         ScreenUtil.getInstance().setWidth(8.0),
                                   ),
-                                  Text('Remember me',
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontFamily: 'Poppins-Medium',
-                                      )),
+//                                  Text('Remember me',
+//                                      style: TextStyle(
+//                                        fontSize: 12.0,
+//                                        fontFamily: 'Poppins-Medium',
+//                                      )),
                                 ],
                               ),
                               InkWell(

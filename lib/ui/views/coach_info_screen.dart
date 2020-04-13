@@ -152,7 +152,7 @@ class _CoachInfoScreenState extends State<CoachInfoScreen>
                                         child: Row(
                                           children: <Widget>[
                                             Text(
-                                              '4.3',
+                                              '',
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w200,
@@ -162,12 +162,12 @@ class _CoachInfoScreenState extends State<CoachInfoScreen>
                                                     DesignCourseAppTheme.grey,
                                               ),
                                             ),
-                                            Icon(
-                                              Icons.star,
-                                              color: DesignCourseAppTheme
-                                                  .nearlyBlue,
-                                              size: 24,
-                                            ),
+//                                            Icon(
+//                                              Icons.star,
+//                                              color: DesignCourseAppTheme
+//                                                  .nearlyBlue,
+//                                              size: 24,
+//                                            ),
                                           ],
                                         ),
                                       )
@@ -248,33 +248,34 @@ class _CoachInfoScreenState extends State<CoachInfoScreen>
                       ),
                     ),
                   ),
-                  Positioned(
-                    top: (MediaQuery.of(context).size.width / 1.1) - 25.0,
-                    right: 35,
-                    child: ScaleTransition(
-                      alignment: Alignment.center,
-                      scale: CurvedAnimation(
-                          parent: animationController,
-                          curve: Curves.fastOutSlowIn),
-                      child: Card(
-                        color: DesignCourseAppTheme.nearlyBlue,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0)),
-                        elevation: 10.0,
-                        child: Container(
-                          width: 60,
-                          height: 60,
-                          child: Center(
-                            child: Icon(
-                              Icons.favorite,
-                              color: DesignCourseAppTheme.nearlyWhite,
-                              size: 30,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+//                  Positioned(
+//                    top: (MediaQuery.of(context).size.width / 1.1) - 25.0,
+//                    right: 35,
+//                    child: ScaleTransition(
+//                      alignment: Alignment.center,
+//                      scale: CurvedAnimation(
+//                          parent: animationController,
+//                          curve: Curves.fastOutSlowIn),
+//                      child: Card(
+//                        color: DesignCourseAppTheme.nearlyBlue,
+//                        shape: RoundedRectangleBorder(
+//                            borderRadius: BorderRadius.circular(50.0)),
+//                        elevation: 10.0,
+//                        child: Container(
+//                          width: 60,
+//                          height: 60,
+//                          child: Center(
+//                            child: Icon(
+//                              Icons.favorite,
+//                              color: DesignCourseAppTheme.nearlyWhite,
+//                              size: 30,
+//                            ),
+//
+//                          ),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
                   Padding(
                     padding: EdgeInsets.only(
                         top: MediaQuery.of(context).padding.top),
