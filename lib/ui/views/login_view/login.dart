@@ -424,8 +424,9 @@ class _LoginState extends State<Login> {
   moveTo(BuildContext context ) async{
     _msg(context, 'Login Successfully', Icons.check_circle);
     await Future<dynamic>.delayed(const Duration(milliseconds: 1500));
+Navigator.pop(context);
 
-    Navigator.pushAndRemoveUntil<void>(context, MaterialPageRoute(builder: (_) => DesignCourseHomeScreen()), (_) => false);
+//    Navigator.pushAndRemoveUntil<void>(context, MaterialPageRoute(builder: (_) => DesignCourseHomeScreen()), (_) => false);
   }
 
 

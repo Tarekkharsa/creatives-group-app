@@ -34,7 +34,7 @@ class ConfigurationApi {
         return msg;
       }
     } catch (e) {
-      if (e.response.statusCode == 499) {
+      if (e.response?.statusCode == 499) {
         msg = e.response.data['message'];
       }
     }

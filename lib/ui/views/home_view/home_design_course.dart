@@ -554,7 +554,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   Future<void> show() async {
     if (_model != null) {
       String msg = await _model.checkUpdates();
-      if (msg != 'ok') {
+      if (msg != 'ok' && msg != null) {
         showDialog<String>(
           context: context,
           barrierDismissible: false,

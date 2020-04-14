@@ -53,8 +53,11 @@ class HomeModel extends BaseModel {
     setState(ViewState.Idle);
     if(versionCheck == 'ok'){
       print('ok');
+    }else if(versionCheck == null){
+
     }else{
       print('res = ${versionCheck}');
+
     }
     return versionCheck;
   }

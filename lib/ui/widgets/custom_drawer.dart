@@ -176,11 +176,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               Scaffold.of(context).showSnackBar(SnackBar(
                                 content: Row(
                                   children: <Widget>[
-                                    Icon(Icons.check_circle),
+                                    Icon(Icons.check_circle_outline),
                                     SizedBox(
                                       width: 10.0,
                                     ),
-                                    Text('loggedOutSuccess',
+                                    Text('Logout Successfully',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontFamily: 'Poppins-Bold',
@@ -188,7 +188,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                         )),
                                   ],
                                 ),
-                              ));
+                              ),);
                             },
                           )
                         : SizedBox(),
