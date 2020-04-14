@@ -99,7 +99,7 @@ class _CustomDialogState extends State<CustomDialog> {
                             child: FormBuilder(
                               key: _fbKey,
                               child: FormBuilderTextField(
-
+                                      attribute: 'Question',
                                 controller: questionController,
                                 decoration: InputDecoration(
                                   hintText: 'Question...',
@@ -257,6 +257,7 @@ class _CustomDialogState extends State<CustomDialog> {
   Widget _getCoursesDropDown(BuildContext context) {
 
     return FormBuilderDropdown(
+      attribute: 'Course',
       onChanged: (value) {
         print(value);
         setState(() {

@@ -58,6 +58,7 @@ class FormCard extends StatelessWidget {
                     )
                 ),
                 FormBuilderTextField(
+                  attribute: 'Email',
                   controller: emailController,
                   decoration: InputDecoration(
                       hintText: 'Email',
@@ -80,6 +81,7 @@ class FormCard extends StatelessWidget {
                     )
                 ),
                 FormBuilderTextField(
+                  attribute: 'password',
                   controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(

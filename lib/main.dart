@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             textTheme: AppTheme.textTheme,
             platform: TargetPlatform.android,
           ),
-//        initialRoute: '/',
+          initialRoute: '/',
           onGenerateRoute: Router.generateRoute,
           home: SplashScreen.navigate(
               name: 'assets/splashScreen.flr',

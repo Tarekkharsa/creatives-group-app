@@ -35,7 +35,7 @@ dependencies:
   cached_network_image: ^2.0.0
   flutter_form_builder: ^3.8.1
   shared_preferences: ^0.5.6+3
-  image_picker: ^0.6.3+4
+  image_picker:
   url_launcher: ^5.4.2
   giffy_dialog: ^1.7.0
   flare_splash_screen: ^3.0.1
@@ -44,6 +44,8 @@ dependencies:
   overlay_support: ^1.0.3
   pin_code_fields: ^2.4.0
   connectivity: ^0.4.8+2
+
+
 
 dev_dependencies:
   flutter_launcher_icons: ^0.7.4

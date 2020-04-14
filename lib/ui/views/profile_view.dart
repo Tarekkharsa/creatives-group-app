@@ -261,6 +261,7 @@ class MapScreenState extends State<ProfilePage>
                                                 new Flexible(
                                                   child:
                                                       new FormBuilderTextField(
+                                                        attribute: 'name',
                                                     readOnly: _status,
                                                     controller: nameController,
                                                     decoration: InputDecoration(
@@ -270,10 +271,10 @@ class MapScreenState extends State<ProfilePage>
                                                     enabled: !_status,
                                                     autofocus: !_status,
                                                     maxLines: 1,
-//                                                  validators: [
-//                                                    FormBuilderValidators
-//                                                        .required(),
-//                                                  ],
+                                                  validators: [
+                                                    FormBuilderValidators
+                                                        .required(),
+                                                  ],
                                                   ),
                                                 ),
                                               ],
@@ -314,6 +315,7 @@ class MapScreenState extends State<ProfilePage>
                                                 new Flexible(
                                                   child:
                                                       new FormBuilderTextField(
+                                                        attribute: 'email',
                                                     readOnly: true,
                                                     initialValue:
                                                         model.user?.email,
@@ -369,6 +371,7 @@ class MapScreenState extends State<ProfilePage>
                                                 new Flexible(
                                                   child:
                                                       new FormBuilderTextField(
+                                                        attribute: 'phone',
                                                     initialValue:
                                                         model.user?.phone,
                                                     readOnly: _status,
@@ -422,6 +425,7 @@ class MapScreenState extends State<ProfilePage>
                                                 new Flexible(
                                                   child:
                                                       new FormBuilderTextField(
+                                                        attribute: 'password',
                                                     readOnly: _status,
                                                     controller:
                                                         passwordController,
@@ -574,6 +578,7 @@ class MapScreenState extends State<ProfilePage>
 //    if (_model.selectedUniversity == null) return SizedBox.shrink();
     List<University> universitiesList = _model.universities;
     return FormBuilderCustomField(
+      attribute: 'University',
       validators: [
         FormBuilderValidators.required(),
       ],

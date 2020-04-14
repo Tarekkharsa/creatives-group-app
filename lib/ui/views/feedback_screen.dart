@@ -159,6 +159,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               child: FormBuilder(
                 key: _fbKey,
                 child: FormBuilderTextField(
+                  attribute: 'feedback',
                   controller: _controller,
                   validators: [
                     FormBuilderValidators.required(),

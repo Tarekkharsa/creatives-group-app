@@ -42,11 +42,12 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   @override
   void initState() {
     super.initState();
+    _fcm.subscribeToTopic('all');
+
     _fcm.getToken().then((token) {
-      print(token);
+//      print(token);
     });
 
-    _fcm.subscribeToTopic('all');
     if (Platform.isIOS) {
       iosSubscription = _fcm.onIosSettingsRegistered.listen((data) {
 //        _saveDeviceToken();
@@ -62,7 +63,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         print('message recieved');
         print("$message");
         _showDialog(message);
-
       },
       onLaunch: (Map<String, dynamic> message) async {
         print('on launch');
@@ -73,7 +73,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         print(" $message");
       },
     );
-
   }
 
   _launchURL(String url) async {
@@ -84,13 +83,16 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+
+
+
     var connectionStatus = Provider.of<ConnectivityStatus>(context);
     if (connectionStatus == ConnectivityStatus.Offline) {
       SnackBarConnection(_scaffoldKey);
     }
-
 
     final double right = MediaQuery.of(context).size.width * 0.7;
 
@@ -104,10 +106,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         model.getCoaches();
 
         _model = model;
-      show();
+        show();
       },
-
-
       builder: (context, model, child) => Container(
         color: DesignCourseAppTheme.nearlyWhite,
         child: Scaffold(
@@ -505,8 +505,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     _model.getCategories();
     _model.getCoaches();
     _model.getCourses();
-
-
   }
 
   Future<void> _showDialog(Map<String, dynamic> message) async {
@@ -517,7 +515,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
 
     if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-
+      print('ios = ${iosInfo.identifierForVendor}');
       if (Platform.isIOS &&
           int.parse(iosInfo.systemVersion.split('.')[0]) < 13) {
         fetchedMessage = message['aps']['alert'];
@@ -553,14 +551,10 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     }, duration: Duration(milliseconds: 4000));
   }
 
-
-
-Future<void> show() async{
-    if(_model != null){
-
-     String msg =  await _model.checkUpdates();
-      if(msg != 'ok'){
-
+  Future<void> show() async {
+    if (_model != null) {
+      String msg = await _model.checkUpdates();
+      if (msg != 'ok') {
         showDialog<String>(
           context: context,
           barrierDismissible: false,
@@ -571,47 +565,37 @@ Future<void> show() async{
             String btnLabel = "Update Now";
             String btnLabelCancel = "Later";
             return Platform.isIOS
-                ? WillPopScope(
-              onWillPop: () {},
-                  child: new CupertinoAlertDialog(
-              title: Text(title),
-              content: Text(message),
-              actions: <Widget>[
-                  FlatButton(
-                    child: Text(btnLabel),
-                    onPressed: () => _launchURL(_model.versionCheck),
-                  ),
-//                FlatButton(
-//                  child: Text(btnLabelCancel),
-//                  onPressed: () => Navigator.pop(context),
-//                ),
-              ],
-            ),
-                )
-                : WillPopScope(
-                onWillPop: () async {
-                  exit(0);
-                      return false;
-                },
-                  child: new AlertDialog(
-              title: Text(title),
-              content: Text(message),
-              actions: <Widget>[
-                  FlatButton(
-                    child: Text(btnLabel),
-                    onPressed: () => _launchURL(_model.versionCheck),
-                  ),
-//                FlatButton(
-//                  child: Text(btnLabelCancel),
-//                  onPressed: () => Navigator.pop(context),
-//                ),
-              ],
-            ),
-                );
+                ? new CupertinoAlertDialog(
+                    title: Text(title),
+                    content: Text(message),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text(btnLabel),
+                        onPressed: () => _launchURL(_model.versionCheck),
+                      ),
+                      FlatButton(
+                        child: Text(btnLabelCancel),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  )
+                : new AlertDialog(
+                    title: Text(title),
+                    content: Text(message),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text(btnLabel),
+                        onPressed: () => _launchURL(_model.versionCheck),
+                      ),
+                      FlatButton(
+                        child: Text(btnLabelCancel),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  );
           },
         );
       }
     }
-}
-
+  }
 }

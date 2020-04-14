@@ -163,10 +163,10 @@ class _RegisterState extends State<Register> {
                                     width:
                                         ScreenUtil.getInstance().setWidth(12.0),
                                   ),
-                                  GestureDetector(
-                                    onTap: _radio,
-                                    child: radioButton(_isSelected),
-                                  ),
+//                                  GestureDetector(
+//                                    onTap: _radio,
+//                                    child: radioButton(_isSelected),
+//                                  ),
                                   SizedBox(
                                     width:
                                         ScreenUtil.getInstance().setWidth(8.0),
