@@ -173,7 +173,9 @@ class _CustomDialogState extends State<CustomDialog> {
                                     var question = await model.sendQuestion(
                                         questionController.text, mySelection);
                                     if (question != null) {
-                                      Navigator.pushReplacement(context, MaterialPageRoute(builder:
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                      Navigator.push(context, MaterialPageRoute(builder:
                                       (context) => QuestionView() ));
                                     }else{
                                       _msg(context, 'conection error!!', Icons.error_outline,widget.scaffoldKey);
