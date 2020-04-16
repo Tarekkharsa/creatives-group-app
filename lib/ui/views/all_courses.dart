@@ -75,7 +75,7 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
                 child: (model.courses?.length == 0 &&
                         model.state == ViewState.Idle)
                     ? Center(
-                        child: Text('No Courses Available Now'),
+                        child: Text('No Results'),
                       )
                     : Stack(
                         children: <Widget>[

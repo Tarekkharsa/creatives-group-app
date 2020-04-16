@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:core';
 import 'dart:io';
 
 import 'package:creativesapp/core/enums/connectivity_status.dart';
 import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/models/category.dart';
+import 'package:creativesapp/core/services/alarmManager.dart';
 import 'package:creativesapp/core/viewmodels/all_courses_model.dart';
 import 'package:creativesapp/core/viewmodels/home_model.dart';
 import 'package:creativesapp/ui/Themes/design_course_app_theme.dart';
@@ -38,7 +40,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   HomeModel _model;
   final FirebaseMessaging _fcm = FirebaseMessaging();
   StreamSubscription iosSubscription;
-
+//  NotificationManager notificationManager;
   @override
   void initState() {
     super.initState();
@@ -73,6 +75,9 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         print(" $message");
       },
     );
+
+//     notificationManager = new NotificationManager();
+//     notificationManager.showNotificationWithDefaultSound('title', 'body');
   }
 
   _launchURL(String url) async {
@@ -83,6 +88,12 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     }
   }
 
+  @override
+  void dispose() {
+
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +105,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       SnackBarConnection(_scaffoldKey);
     }
 
-    final double right = MediaQuery.of(context).size.width * 0.7;
+    final double right = MediaQuery.of(context).size.width * 0.65;
 
     int screenWidth = MediaQuery.of(context).size.width.floor();
     // 411
@@ -145,7 +156,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                                         bottom: 8.0,
                                         right: right),
                                     child: Text(
-                                      'Category',
+                                      'Categories',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontWeight: FontWeight.w600,
@@ -175,7 +186,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                                           bottom: 0.0,
                                           right: 10.0),
                                       child: Text(
-                                        'Popular Course',
+                                        'Popular Courses',
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -255,6 +266,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       ),
     );
   }
+
+
 
   Widget getCategoryUI() {
     return Column(
@@ -525,6 +538,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     }
 
     showOverlayNotification((context) {
+
       return Card(
         margin: const EdgeInsets.symmetric(horizontal: 4),
         child: SafeArea(
@@ -552,6 +566,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   }
 
   Future<void> show() async {
+
     if (_model != null) {
       String msg = await _model.checkUpdates();
       if (msg != 'ok' && msg != null) {

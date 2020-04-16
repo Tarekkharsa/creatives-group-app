@@ -21,13 +21,18 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   setImage() async {
     SharedPreferences user = await SharedPreferences.getInstance();
-    print("old img ${_model.userImg}");
 
     if (user != null) {
-      print("sherd img ${user.getString(Constants.PREF_IMAGE)}");
-      if (_model.userImg == user.getString(Constants.PREF_IMAGE)) {
+
+      if (_model.userImg == user.getString(Constants.PREF_IMAGE) ) {
+
       } else {
         _model.setUserImg(user.getString(Constants.PREF_IMAGE));
+      }
+      if (_model.userName == user.getString(Constants.PREF_NAME) ) {
+
+      } else {
+        _model.setUserName(user.getString(Constants.PREF_NAME));
       }
     }
   }

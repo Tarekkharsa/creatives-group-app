@@ -203,7 +203,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                 child: Row(
                                                   children: <Widget>[
                                                     Text(
-                                                      '4.3',
+                                                      '',
                                                       textAlign: TextAlign.left,
                                                       style: TextStyle(
                                                         fontWeight:
@@ -215,13 +215,13 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                                 .grey,
                                                       ),
                                                     ),
-                                                    Icon(
+                                                    (model.course?.end_date == null )?Icon(
                                                       Icons.star,
                                                       color:
                                                           DesignCourseAppTheme
                                                               .nearlyBlue,
                                                       size: 24,
-                                                    ),
+                                                    ):SizedBox(),
                                                   ],
                                                 ),
                                               )
@@ -295,59 +295,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                               ],
                                             ),
                                           ),
-//                                          child: Padding(
-//                                            padding: const EdgeInsets.only(
-//                                                top: 0,
-//                                                bottom: 0,
-//                                                right: 6,
-//                                                left: 6),
-//                                            child: Column(
-//                                              children: <Widget>[
-//                                                Row(
-//                                                  children: <Widget>[
-//                                                    (model.course?.start_date !=
-//                                                            null)
-//                                                        ? getTimeBoxUI(
-//                                                            'start_date',
-//                                                            model.course
-//                                                                ?.start_date
-//                                                                .toString())
-//                                                        : Text(''),
-//                                                    (model.course?.end_date !=
-//                                                            null)
-//                                                        ? getTimeBoxUI(
-//                                                            'end_date',
-//                                                            model.course
-//                                                                ?.end_date
-//                                                                .toString())
-//                                                        : Text(''),
-//                                                    getTimeBoxUI(
-//                                                        'phone',
-//                                                        model.course?.contact
-//                                                            ?.phone
-//                                                            .toString()),
-//                                                  ],
-//                                                ),
-//                                                Row(
-//                                                  children: <Widget>[
-//                                                    getTimeBoxUI(
-//                                                        'Address',
-//                                                        model.course?.address
-//                                                            .toString()),
-//                                                    getTimeBoxUI(
-//                                                        'couch',
-//                                                        model.course?.coaches !=
-//                                                                null
-//                                                            ? model
-//                                                                .course
-//                                                                ?.coaches[0]
-//                                                                ?.name
-//                                                            : ''.toString()),
-//                                                  ],
-//                                                ),
-//                                              ],
-//                                            ),
-//                                          ),
+
                                         ),
                                         Expanded(
                                           child: AnimatedOpacity(
@@ -457,7 +405,6 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                                                 Expanded(
                                                   child: InkWell(
                                                     onTap: () async {
-                                                      print(model.userState);
                                                       SharedPreferences user =
                                                           await SharedPreferences
                                                               .getInstance();
@@ -694,14 +641,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                   ? SizedBox(
                       height: 50.0,
                       width: 50.0,
-                      child: SocialIcon(
-                        colors: [
-                          HexColor('#075e54'),
-                          HexColor('#128c7e'),
-                          HexColor('#25d366'),
-                          HexColor('#ece5dd'),
-                        ],
-                        icondata: FontAwesomeIcons.whatsapp,
+                      child: IconButton( icon:Icon(FontAwesomeIcons.whatsapp),
                         onPressed: () async {
                           print(whatsAppNum);
                           var whatsappUrl =
@@ -711,7 +651,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                               : print(
                                   "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
                         },
-                      ),
+                      color: DesignCourseAppTheme.nearlyBlue,),
                     )
                   : SizedBox(),
             ],

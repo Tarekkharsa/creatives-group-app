@@ -182,7 +182,7 @@ class CategoryView extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
-                                                Text(
+                                                (coach?.phone != null)? Text(
                                                   '${coach.phone} ',
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
@@ -192,7 +192,7 @@ class CategoryView extends StatelessWidget {
                                                     color: DesignCourseAppTheme
                                                         .grey,
                                                   ),
-                                                ),
+                                                ):SizedBox(),
                                                 Container(
                                                   child: Row(
                                                     children: <Widget>[

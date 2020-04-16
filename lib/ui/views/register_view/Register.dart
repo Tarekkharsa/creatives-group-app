@@ -128,7 +128,7 @@ class _RegisterState extends State<Register> {
                                 width: ScreenUtil.getInstance().setWidth(110),
                                 height: ScreenUtil.getInstance().setHeight(110),
                               ),
-                              Text('LOGO',
+                              Text('CREATIVES',
                                   style: TextStyle(
                                     fontFamily: 'Poppins-Bold',
                                     fontSize:
@@ -442,13 +442,13 @@ class _RegisterState extends State<Register> {
 
     var res = await model.register(data);
 
-    if (res == 200) {
+    if (res == '200') {
       // store user
       moveTo(context);
-    } else if (res == 404) {
+    } else if (res == '404') {
       _msg(context, 'conection error!!', Icons.error_outline);
-    } else if (res == 400) {
-      _msg(context, 'Email or password not valid  !!', Icons.error_outline);
+    } else  {
+      _msg(context, '${res} !!', Icons.error_outline);
     }
   }
 

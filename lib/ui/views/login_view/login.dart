@@ -125,10 +125,10 @@ class _LoginState extends State<Login> {
                                 width: ScreenUtil.getInstance().setWidth(110),
                                 height: ScreenUtil.getInstance().setHeight(110),
                               ),
-                              Text('LOGO',
+                              Text('CREATIVES',
                                   style: TextStyle(
                                     fontFamily: 'Poppins-Bold',
-                                    fontSize: ScreenUtil.getInstance().setSp(46),
+                                    fontSize: ScreenUtil.getInstance().setSp(40),
                                     letterSpacing: .6,
                                     fontWeight: FontWeight.bold,
                                   ))
@@ -391,13 +391,13 @@ class _LoginState extends State<Login> {
     };
     var res = await model.login(data);
     print(res);
-    if (res == 200) {
+    if (res == '200') {
       _msg(context, 'Login Successfully', Icons.check_circle);
       moveTo(context);
-    } else if (res == 404) {
+    } else if (res == '404') {
       _msg(context, 'conection error!!', Icons.error_outline);
-    } else if (res == 400) {
-      _msg(context, 'Email or password not valid  !!', Icons.error_outline);
+    } else  {
+      _msg(context, '${res} !!', Icons.error_outline);
     }
   }
 

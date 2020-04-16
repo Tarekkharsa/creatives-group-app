@@ -75,7 +75,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                             if (form.validate()) {
                             var res =await  model.sendFeedBack(_controller.text);
                             if (res != null ) {
-                              
+                              _controller.text = '';
                             _msg(context, 'Thanks .... :)', Icons.check_circle,_scaffoldKey);
                             }else{
                                _msg(context, 'conection error!!', Icons.error_outline,_scaffoldKey);
@@ -90,7 +90,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                         Color(0xFF6078ea).withOpacity(.3),
                                     highlightColor: Colors.white,
                                     child: Text(
-                                      'SIGNIN',
+                                      'SEND',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,

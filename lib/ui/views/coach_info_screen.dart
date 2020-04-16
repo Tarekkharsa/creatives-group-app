@@ -185,8 +185,8 @@ class _CoachInfoScreenState extends State<CoachInfoScreen>
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                        getTimeBoxUI(
-                                            'phone', widget.coach.phone),
+                                        (widget.coach?.phone != null )? getTimeBoxUI(
+                                            'phone', widget.coach.phone):SizedBox(),
                                         getTimeBoxUI('university',
                                             widget.coach.university.name),
                                       ],

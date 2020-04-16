@@ -112,7 +112,7 @@ class _QuestionViewState extends State<QuestionView> {
                               child: Center(
                                 child: CircularProgressIndicator(),
                               ),
-                              height: MediaQuery.of(context).size.height / 2,
+                              height: MediaQuery.of(context).size.height * 0.65,
                             ),
                           ],
                         )

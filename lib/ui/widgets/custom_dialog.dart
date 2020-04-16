@@ -189,7 +189,7 @@ class _CustomDialogState extends State<CustomDialog> {
                                               Color(0xFF6078ea).withOpacity(.3),
                                           highlightColor: Colors.white,
                                           child: Text(
-                                            'SIGNIN',
+                                            'SEND',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.white,

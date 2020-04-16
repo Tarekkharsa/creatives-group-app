@@ -182,7 +182,7 @@ class _ChatScreenState extends State<ChatScreen> {
           SizedBox(
             height: 16,
           ),
-          Container(
+          (widget.question.image != null ) ? Container(
 //            width: double.infinity,
             
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -198,7 +198,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     widget.question.image
               ),
             )
-          ),
+          ):SizedBox(),
         ],
       ),
     );

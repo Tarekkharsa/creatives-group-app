@@ -272,8 +272,8 @@ class MapScreenState extends State<ProfilePage>
                                                     autofocus: !_status,
                                                     maxLines: 1,
                                                   validators: [
-                                                    FormBuilderValidators
-                                                        .required(),
+//                                                    FormBuilderValidators
+//                                                        .required(),
                                                   ],
                                                   ),
                                                 ),
@@ -382,8 +382,8 @@ class MapScreenState extends State<ProfilePage>
 //                                                  enabled: _status,
                                                     maxLines: 1,
                                                     validators: [
-//                                                    FormBuilderValidators
-//                                                        .required(),
+                                                    FormBuilderValidators.numeric(),
+                                                          (value) => _validatePhone(value)
                                                     ],
                                                   ),
                                                 ),
@@ -425,6 +425,7 @@ class MapScreenState extends State<ProfilePage>
                                                 new Flexible(
                                                   child:
                                                       new FormBuilderTextField(
+                                                        maxLines: 1,
                                                         attribute: 'password',
                                                     readOnly: _status,
                                                     controller:
@@ -433,6 +434,7 @@ class MapScreenState extends State<ProfilePage>
                                                         hintText:
                                                             'Enter New Password'),
 //                                                  enabled: !_status,
+                                                      validators: [(value)=> _validatePassword(value)],
                                                   ),
                                                 ),
                                               ],
@@ -497,7 +499,7 @@ class MapScreenState extends State<ProfilePage>
                 child: new Text("Save"),
                 textColor: Colors.white,
                 color: DesignCourseAppTheme.nearlyBlue,
-                onPressed: () {
+                onPressed: () async {
                   var user = {
                     'id': _model.user?.id,
                     'password': passwordController.text,
@@ -513,7 +515,7 @@ class MapScreenState extends State<ProfilePage>
                       _status = true;
                     });
                     if (_model.state == ViewState.Idle) {
-                      _model.updateUser(user);
+                    await  _model.updateUser(user);
                     }
                     FocusScope.of(context).requestFocus(new FocusNode());
                   }
@@ -617,5 +619,22 @@ class MapScreenState extends State<ProfilePage>
   Future<void> _handleRefresh() async {
     _model.getUser();
     _model.getUniversities();
+  }
+
+  String _validatePhone(String phone) {
+     if(phone.toString().length != 10 && phone.toString().length != 0 ){
+      return 'value must be equal to 10';
+    }else if(phone.toString().length != 0 && (phone.toString().substring(0, 2) != '09' &&
+         phone.toString().substring(0, 2) != '٠٩')){
+            return 'phone not valid';
+     }
+    return null;
+  }
+
+  String _validatePassword(String password) {
+    if(password.toString().length != 0 && password.toString().length < 4 ){
+      return 'Password must be greater then or equal 4 ';
+    }
+    return null;
   }
 }

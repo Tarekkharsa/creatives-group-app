@@ -128,7 +128,7 @@ class _FormCardState extends State<FormCard> {
                         validators: [
                           FormBuilderValidators.email(),
                           FormBuilderValidators.required(),
-                          FormBuilderValidators.max(1),
+//                          FormBuilderValidators.max(1),
                         ],
                       ),
                       FormBuilderTextField(
@@ -143,6 +143,7 @@ class _FormCardState extends State<FormCard> {
                         maxLines: 1,
                         validators: [
                           FormBuilderValidators.required(),
+                          FormBuilderValidators.minLength(4,errorText: 'Password must be greater then or equal 4  '),
                         ],
                       ),
                       FormBuilderTextField(
@@ -157,6 +158,9 @@ class _FormCardState extends State<FormCard> {
                         validators: [
                           FormBuilderValidators.numeric(),
                           FormBuilderValidators.required(),
+                              (value) => _validatePhone(value),
+                          FormBuilderValidators.minLength(10,errorText: 'value must be equal to 10'),
+                          FormBuilderValidators.maxLength(10,errorText: 'value must be equal to 10'),
                         ],
                       ),
                       widget.universities != null && widget.universities.length != 0
@@ -256,4 +260,15 @@ bool validateForm(){
   }
   return false;
 }
+
+  String _validatePhone(String phone) {
+    if (
+        (phone.toString().substring(0, 2) != '09' &&
+            phone.toString().substring(0, 2) != '٠٩')) {
+      return 'phone not valid';
+    }
+    return null;
+  }
+
+
 }

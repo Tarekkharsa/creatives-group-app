@@ -22,18 +22,26 @@ class _SearchBarUIState extends State<SearchBarUI> {
 
   @override
   void initState() {
-    if(widget.courseName != null){
+    if(widget.courseName != null ){
       setState(() {
         _controller.text = widget.courseName;
       });
     }
     super.initState();
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
 
+    print(widget.model.isSearch);
 
-    print(widget.courseName);
+
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 18),
       child: Row(

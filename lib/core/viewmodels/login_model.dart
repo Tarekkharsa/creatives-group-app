@@ -34,7 +34,7 @@ class LoginModel extends BaseModel {
     notifyListeners();
   }
 
-  Future<int> login(data) async {
+  Future<String> login(data) async {
     setState(ViewState.Busy);
     var res = await _loginApi.login(data);
     setState(ViewState.Idle);

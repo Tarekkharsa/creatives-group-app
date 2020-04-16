@@ -39,7 +39,7 @@ void setUniversities(List<University>  universitiesList){
 
 
 
-  Future<int> register(data) async {
+  Future<String> register(data) async {
     setState(ViewState.Busy);
     var res = await _registerApi.register(data);
     setState(ViewState.Idle);
@@ -60,10 +60,8 @@ Future getConfigurations() async {
   setState(ViewState.Busy);
   configurations= await _configurationApi.getConfigurations();
   for (var x in configurations) {
-    print(x.key);
     if(x.key == 'FacebookPage'){
       facLink = x.value;
-
     }else if(x.key == 'YoutubeChannel'){
       youtubeLink = x.value;
     }else if(x.key == 'WahtsappNumber'){
