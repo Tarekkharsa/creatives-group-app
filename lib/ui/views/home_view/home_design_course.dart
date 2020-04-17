@@ -40,7 +40,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   HomeModel _model;
   final FirebaseMessaging _fcm = FirebaseMessaging();
   StreamSubscription iosSubscription;
-//  NotificationManager notificationManager;
+  NotificationManager notificationManager;
   @override
   void initState() {
     super.initState();
@@ -76,8 +76,9 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       },
     );
 
-//     notificationManager = new NotificationManager();
-//     notificationManager.showNotificationWithDefaultSound('title', 'body');
+     notificationManager = new NotificationManager();
+    notificationManager.initNotificationManager();
+
   }
 
   _launchURL(String url) async {
@@ -97,7 +98,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
 
 
     var connectionStatus = Provider.of<ConnectivityStatus>(context);
@@ -458,6 +458,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                                         categoryList: _model.categories)),
                               );
                             }
+
                             FocusScope.of(context).requestFocus(FocusNode());
                           },
                           controller: _controller,
@@ -536,6 +537,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     } else {
       fetchedMessage = message['notification'];
     }
+
+    notificationManager.showNotificationWithDefaultSound(fetchedMessage['title'], fetchedMessage['body']);
 
     showOverlayNotification((context) {
 

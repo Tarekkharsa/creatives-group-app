@@ -40,6 +40,11 @@ class _SearchBarUIState extends State<SearchBarUI> {
   Widget build(BuildContext context) {
 
     print(widget.model.isSearch);
+    if(widget.model.isEmpty == 1){
+     setState(() {
+       _controller.clear();
+     });
+    }
 
 
     return Padding(
@@ -74,6 +79,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
                             onFieldSubmitted: (v){
                               widget.model.search(v);
                               widget.model.setIsSearch(1);
+                              widget.model.setIsEmpty(0);
                               FocusScope.of(context).requestFocus(FocusNode());
                             },
                             controller: _controller,
@@ -110,6 +116,7 @@ class _SearchBarUIState extends State<SearchBarUI> {
                             FocusScope.of(context).requestFocus(FocusNode());
                             widget.model.setIsSearch(1);
                             widget.model.search(_controller.text);
+                            widget.model.setIsEmpty(0);
                         },
                       ),
                     )

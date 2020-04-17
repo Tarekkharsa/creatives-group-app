@@ -206,6 +206,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   }
 
   _imageProfile() {
-    return Image.asset('assets/design_course/userImage.png');
+    return Image.asset('assets/design_course/user2.png');
   }
 }

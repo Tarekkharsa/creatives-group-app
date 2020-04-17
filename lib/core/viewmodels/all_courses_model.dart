@@ -20,6 +20,16 @@ class AllCoursesModel extends BaseModel {
   List<Category> categories;
   List<Course> courses;
 
+  int _isEmpty = 0;
+
+  int get isEmpty => _isEmpty;
+
+  void setIsEmpty(int vlaue){
+    _isEmpty = vlaue;
+    notifyListeners();
+  }
+
+
   int _isSearch = 0;
 
   int get isSearch => _isSearch;

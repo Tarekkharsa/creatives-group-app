@@ -572,7 +572,7 @@ class MapScreenState extends State<ProfilePage>
 
   _imageProfile() {
     return _image == null
-        ? Image.asset('assets/design_course/userImage.png')
+        ? Image.asset('assets/design_course/user2.png')
         : Image.file(_image);
   }
 

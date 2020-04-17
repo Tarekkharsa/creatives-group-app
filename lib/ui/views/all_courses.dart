@@ -192,6 +192,7 @@ class _AllCoursesState extends State<AllCourses> with TickerProviderStateMixin {
               widget.category_id = id;
               _model.setIsSearch(0);
             });
+            _model.setIsEmpty(1);
             FocusScope.of(context).requestFocus(FocusNode());
             _model.getCoursesByCategory(id);
 

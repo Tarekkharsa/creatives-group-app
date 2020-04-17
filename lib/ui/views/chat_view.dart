@@ -157,7 +157,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   '${Constants.StudentImage}' +
                       messageSenderAvatar,
                 ):AssetImage(
-                  'assets/design_course/userImage.png'
+                  'assets/design_course/user2.png'
                 ),
               ),
               ),
