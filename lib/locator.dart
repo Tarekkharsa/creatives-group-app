@@ -2,6 +2,7 @@
 import 'package:creativesapp/core/api/configuratio_api.dart';
 import 'package:creativesapp/core/api/feed_back_api.dart';
 import 'package:creativesapp/core/api/question_api.dart';
+import 'package:creativesapp/core/viewmodels/about_model.dart';
 import 'package:creativesapp/core/viewmodels/all_courses_model.dart';
 import 'package:creativesapp/core/viewmodels/feed_back_model.dart';
 import 'package:creativesapp/core/viewmodels/question_model.dart';
@@ -51,4 +52,5 @@ void setupLocator() {
   locator.registerFactory(() => CourseModel());
   locator.registerFactory(() => QuestionModel());
   locator.registerFactory(() => FeedBackModel());
+  locator.registerFactory(() => AboutModel());
 }

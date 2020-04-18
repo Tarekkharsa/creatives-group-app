@@ -50,6 +50,7 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
         padding: const EdgeInsets.only(top: 8),
         child: (widget.model.state == ViewState.Idle && widget.model.courses != null)

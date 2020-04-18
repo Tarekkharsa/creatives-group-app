@@ -5,6 +5,7 @@ import 'package:creativesapp/locator.dart';
 import 'package:creativesapp/ui/router.dart';
 import 'package:creativesapp/ui/themes/app_theme.dart';
 import 'package:creativesapp/ui/themes/design_course_app_theme.dart';
+import 'package:creativesapp/ui/views/about_view.dart';
 import 'package:creativesapp/ui/views/chat_view.dart';
 import 'package:creativesapp/ui/views/home_view/home_design_course.dart';
 import 'package:creativesapp/ui/views/pin_code_verification_view.dart';

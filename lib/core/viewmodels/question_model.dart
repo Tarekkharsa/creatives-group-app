@@ -43,8 +43,10 @@ class QuestionModel extends BaseModel {
   }
 
   Future getCourses() async {
+    Course GeneralCourse = new Course(title:'General Question'  );
     setState(ViewState.Busy);
     courses = await _apiCourse.getCourses();
+    courses.add(GeneralCourse);
     setState(ViewState.Idle);
   }
 

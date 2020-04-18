@@ -20,6 +20,18 @@ class HomeModel extends BaseModel {
   List<Course> courses;
   String versionCheck;
 
+
+  int _scroll = 0;
+
+  get scroll => _scroll;
+
+  void setScroll(int value){
+    _scroll = value;
+    notifyListeners();
+  }
+
+
+
   int _refresh = 0;
 
   get refresh => _refresh;

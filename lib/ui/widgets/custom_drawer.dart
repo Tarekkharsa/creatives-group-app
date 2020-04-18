@@ -37,6 +37,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     setImage();
@@ -164,6 +165,17 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       },
                     )
                         : SizedBox(),
+
+                    ListTile(
+                      leading: IconButton(
+                        icon: Icon(Icons.info),
+                        onPressed: () {},
+                      ),
+                      title: Text("About Us"),
+                      onTap: () {
+                        Navigator.pushNamed(context, 'aboutus');
+                      },
+                    ),
 
                     model.isLoggedIn == true
                         ? ListTile(

@@ -259,12 +259,19 @@ class _CustomDialogState extends State<CustomDialog> {
   Widget _getCoursesDropDown(BuildContext context) {
 
     return FormBuilderDropdown(
+
       attribute: 'Course',
       onChanged: (value) {
         print(value);
+        if(value != null){
         setState(() {
           mySelection = value.toString();
         });
+        }else{
+          setState(() {
+            mySelection = '';
+          });
+        }
       },
       isDense: true,
       isExpanded: true,
@@ -293,6 +300,7 @@ class _CustomDialogState extends State<CustomDialog> {
             ),
           )
           .toList(),
+
     );
   }
 

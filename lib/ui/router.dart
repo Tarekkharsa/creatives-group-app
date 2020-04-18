@@ -1,5 +1,6 @@
 import 'package:creativesapp/core/models/coach.dart';
 import 'package:creativesapp/core/models/course.dart';
+import 'package:creativesapp/ui/views/about_view.dart';
 import 'package:creativesapp/ui/views/all_courses.dart';
 import 'package:creativesapp/ui/views/coach_info_screen.dart';
 import 'package:creativesapp/ui/views/course_info_screen.dart';
@@ -19,7 +20,9 @@ const String initialRoute = "/";
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case 'feedBack':
+      case 'aboutus':
+        return MaterialPageRoute(builder: (_) => AboutUs());
+        case 'feedBack':
         return MaterialPageRoute(builder: (_) => FeedbackScreen());
       case '/':
         return MaterialPageRoute(builder: (_) => DesignCourseHomeScreen());

@@ -336,7 +336,7 @@ class _ShowCourseState extends State<ShowCourse>
                                       (model.course?.contact?.phone !=
                                           null)
                                           ? getTimeBoxUI(
-                                              'phone',
+                                              'Phone',
                                               model.course?.contact
                                                   ?.phone
                                                   .toString(),
@@ -346,7 +346,7 @@ class _ShowCourseState extends State<ShowCourse>
                                       (model.course?.start_date !=
                                           null)
                                           ? getTimeBoxUI(
-                                          'start_date',
+                                          'Start Date',
                                           model.course?.start_date
                                               .toString(),
                                           '')
@@ -360,7 +360,7 @@ class _ShowCourseState extends State<ShowCourse>
                                           : Text(''),
                                       (model.course?.location != null)
                                           ? getTimeBoxUI(
-                                          'location',
+                                          'Location',
                                           model.course?.location
                                               ?.name
                                               .toString(),
@@ -368,13 +368,13 @@ class _ShowCourseState extends State<ShowCourse>
                                           : Text(''),
                                       (model.course?.end_date != null)
                                           ? getTimeBoxUI(
-                                          'end_date',
+                                          'End Date',
                                           model.course?.end_date
                                               .toString(),
                                           '')
                                           : Text(''),
                                       getTimeBoxUI(
-                                          'couch',
+                                          'Coach',
                                           model.course?.coaches !=
                                               null
                                               ? model.course
@@ -384,7 +384,7 @@ class _ShowCourseState extends State<ShowCourse>
                                       (model.course?.category?.name !=
                                           null)
                                           ? getTimeBoxUI(
-                                          'category',
+                                          'Category',
                                           model.course?.category
                                               ?.name
                                               .toString(),

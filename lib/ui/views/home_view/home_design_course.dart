@@ -36,11 +36,12 @@ class DesignCourseHomeScreen extends StatefulWidget {
 class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController _controller = new TextEditingController();
-
   HomeModel _model;
   final FirebaseMessaging _fcm = FirebaseMessaging();
   StreamSubscription iosSubscription;
   NotificationManager notificationManager;
+
+
   @override
   void initState() {
     super.initState();
@@ -81,6 +82,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
 
   }
 
+
   _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -98,6 +100,9 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
 
 
     var connectionStatus = Provider.of<ConnectivityStatus>(context);
@@ -379,6 +384,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   }
 
   Widget getCategoryBtn2(String text, int id, List<Category> categoryListApi) {
+
     return Container(
       decoration: BoxDecoration(
           color: DesignCourseAppTheme.nearlyBlue,
