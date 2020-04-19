@@ -17,7 +17,6 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';

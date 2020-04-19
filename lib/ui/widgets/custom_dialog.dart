@@ -124,7 +124,7 @@ class _CustomDialogState extends State<CustomDialog> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  'Send Image',
+                                  'Upload Image',
                                   style: TextStyle(
                                     fontFamily: 'Poppins-Bold',
                                     letterSpacing: .6,
@@ -280,7 +280,7 @@ class _CustomDialogState extends State<CustomDialog> {
         fontSize: ScreenUtil.getInstance().setSp(26),
       ),
       decoration: InputDecoration(
-        labelText: "Select Course Name",
+        labelText: "Name",
         labelStyle: TextStyle(
           fontFamily: 'Poppins-Bold',
           letterSpacing: .6,
