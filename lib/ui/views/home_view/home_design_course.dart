@@ -118,6 +118,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         model.getCategories();
         model.getCourses();
         model.getCoaches();
+        model.getUser();
 
         _model = model;
         show();

@@ -84,7 +84,7 @@ class _CustomDialogState extends State<CustomDialog> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Center(
-                            child: Text('Add you Question ',
+                            child: Text('Add your question ',
                                 style: TextStyle(
                                   fontSize: ScreenUtil.getInstance().setSp(35),
                                   fontFamily: 'Poppins-Bold',

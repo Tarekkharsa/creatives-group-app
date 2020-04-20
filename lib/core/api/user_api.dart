@@ -9,13 +9,11 @@ class UserApi {
   String message;
 
   Future<User> getUser(int id) async {
-    print('getUser');
     try {
       Response response =
           await Dio().get("${Constants.URL}getStudent?id=${id}");
       if (response.statusCode == 200) {
         user = User.fromJson(response.data['data']);
-        print(response);
       }
     } catch (e) {
       return null;

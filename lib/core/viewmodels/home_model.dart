@@ -2,10 +2,15 @@ import 'package:creativesapp/core/api/category_api.dart';
 import 'package:creativesapp/core/api/coaches_api.dart';
 import 'package:creativesapp/core/api/configuratio_api.dart';
 import 'package:creativesapp/core/api/course_api.dart';
+import 'package:creativesapp/core/api/user_api.dart';
 import 'package:creativesapp/core/enums/viewstate.dart';
 import 'package:creativesapp/core/models/category.dart';
 import 'package:creativesapp/core/models/coach.dart';
 import 'package:creativesapp/core/models/course.dart';
+import 'package:creativesapp/core/models/user.dart';
+import 'package:creativesapp/core/services/user_manager.dart';
+import 'package:creativesapp/core/utils/Constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../locator.dart';
 import 'base_model.dart';
 
@@ -20,6 +25,8 @@ class HomeModel extends BaseModel {
   List<Course> courses;
   String versionCheck;
 
+  UserApi _userApi = locator<UserApi>();
+  int _id;
 
   int _scroll = 0;
 
@@ -72,5 +79,23 @@ class HomeModel extends BaseModel {
 
     }
     return versionCheck;
+  }
+
+  Future<User> getUser() async {
+    SharedPreferences user = await SharedPreferences.getInstance();
+    if(user != null){
+      _id = user.getInt(Constants.PREF_ID);
+      if (_id != null) {
+        setState(ViewState.Busy);
+        User res = await _userApi.getUser(_id);
+        if(res == null ){
+          UserManager userManager2 = new UserManager();
+          userManager2.logout();
+        }
+        setState(ViewState.Idle);
+        return res;
+      }
+    }
+    return null;
   }
 }
