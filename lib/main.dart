@@ -1,27 +1,15 @@
-import 'package:creativesapp/core/api/course_api.dart';
 import 'package:creativesapp/core/enums/connectivity_status.dart';
-import 'package:creativesapp/core/viewmodels/course_model.dart';
 import 'package:creativesapp/locator.dart';
 import 'package:creativesapp/ui/router.dart';
 import 'package:creativesapp/ui/themes/app_theme.dart';
 import 'package:creativesapp/ui/themes/design_course_app_theme.dart';
-import 'package:creativesapp/ui/views/about_view.dart';
-import 'package:creativesapp/ui/views/chat_view.dart';
 import 'package:creativesapp/ui/views/home_view/home_design_course.dart';
-import 'package:creativesapp/ui/views/pin_code_verification_view.dart';
-import 'package:creativesapp/ui/views/question_view.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcaseview.dart';
-
 import 'core/services/connectivity_provider.dart';
 
 void main() async {
@@ -60,9 +48,9 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           onGenerateRoute: Router.generateRoute,
           home: SplashScreen.navigate(
-              name: 'assets/splashScreen.flr',
-              startAnimation: 'Untitled',
-              next:(context)=> DesignCourseHomeScreen(),
+            name: 'assets/splashScreen.flr',
+            startAnimation: 'Untitled',
+            next:(context)=> DesignCourseHomeScreen(),
             until: () => Future.delayed(Duration(seconds: 1)),
             backgroundColor: Color(0xFFFFFFFF),
           ),

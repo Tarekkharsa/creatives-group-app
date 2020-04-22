@@ -103,10 +103,10 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
 
 
 
-    var connectionStatus = Provider.of<ConnectivityStatus>(context);
-    if (connectionStatus == ConnectivityStatus.Offline) {
-      SnackBarConnection(_scaffoldKey);
-    }
+//    var connectionStatus = Provider.of<ConnectivityStatus>(context);
+//    if (connectionStatus == ConnectivityStatus.Offline) {
+//      SnackBarConnection(_scaffoldKey);
+//    }
 
     final double right = MediaQuery.of(context).size.width * 0.65;
 
